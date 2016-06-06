@@ -5,7 +5,6 @@
 *~
 /build
 /code
-/src/test
 .classpath
 .project
 .settings
