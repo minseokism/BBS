@@ -1,0 +1,6 @@
+logging:
+  file: logs/test.log
+  pattern:
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    com.minseokism: DEBUG
