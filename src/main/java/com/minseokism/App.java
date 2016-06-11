@@ -16,7 +16,7 @@ public class App implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		User created = userRepository.save(new User(
-				null,"minseokism","1234","minseok@naver.com","minseok"));
+				null,"minseokism222","1234","minseok@naver.com","minseok"));
 		System.out.println(created + "is created");
 		
 		userRepository.findAll()
