@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<title>Sign up</title>
 	<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+	href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
 	<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+	href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
 	<link rel="stylesheet"
 	href="/css/signup.css"/>
 </head>	
@@ -83,7 +83,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
 <script src="/js/signup.js"></script>
 </body>
 </html>
