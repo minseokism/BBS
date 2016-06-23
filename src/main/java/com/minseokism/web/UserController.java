@@ -24,9 +24,13 @@ public class UserController {
 		return "users/list";
 	}
 	
+	@RequestMapping(value ="create", method = RequestMethod.GET)
+	String signUp() {
+		return "users/signup";
+	}
+	
 	@RequestMapping(value = "create", method = RequestMethod.POST)
-	String create(Model model) {
-		User user = new User();
+	String create(User user) {
 		userService.create(user);
 		return "redirect:/users";
 	}

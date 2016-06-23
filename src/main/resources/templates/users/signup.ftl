@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
+		<form role="form" method="post">
 			<h2>Please Sign Up <small>It's free and always will be.</small></h2>
 			<hr class="colorgraph">
 			<div class="form-group">
@@ -84,6 +84,6 @@
 </div><!-- /.modal -->
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/signup.js"></script>
+<script src="/js/signup.js"></script>
 </body>
 </html>
