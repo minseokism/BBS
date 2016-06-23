@@ -21,17 +21,17 @@ public class UserController {
 	String List(Model model) {
 		List<User> users = userService.findAll();
 		model.addAttribute("users", users);
-		return "users/list";
+		return "/main";
 	}
 	
-	@RequestMapping(value ="create", method = RequestMethod.GET)
+	@RequestMapping(value ="signup", method = RequestMethod.GET)
 	String signUp() {
 		return "users/signup";
 	}
 	
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	String create(User user) {
 		userService.create(user);
-		return "redirect:/users";
+		return "redirect:/main";
 	}
 }

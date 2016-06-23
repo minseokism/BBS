@@ -24,10 +24,10 @@ public class Post {
 	private Integer no;
 	
 	@Column(nullable = false)
-	private String title;
+	private String subject;
 	
 	@Column(nullable = false)
-	private String comment;
+	private String content;
 	
 	@Column(nullable = false)
 	private Date regDate;
