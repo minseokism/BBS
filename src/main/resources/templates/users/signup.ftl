@@ -1,16 +1,15 @@
-<!DOCTYPE html PUBLIC>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Sign up</title>
 	<link rel="stylesheet"
-	href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
-	<link rel="stylesheet"
-	href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
+	href="/css/bootstrap.min.css"/>
 	<link rel="stylesheet"
 	href="/css/signup.css"/>
 </head>	
 <body>
+<#include "../header.ftl">
 <div class="container">
 
 <div class="row">
