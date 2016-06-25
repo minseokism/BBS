@@ -12,6 +12,7 @@ import com.minseokism.repository.UserRepository;
 public class UserService{
 	@Autowired
 	UserRepository userRepository;
+	
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
