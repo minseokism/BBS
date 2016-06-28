@@ -18,7 +18,7 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	String List(Model model) {
+	String list(Model model) {
 		List<User> users = userService.findAll();
 		model.addAttribute("users", users);
 		return "/main";
@@ -32,6 +32,26 @@ public class UserController {
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	String create(User user) {
 		userService.create(user);
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	String updateForm() {
+		return "users/update";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	String update() {
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	String delete() {
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value = "singin", method = RequestMethod.POST)
+	String signIn() {
 		return "redirect:/main";
 	}
 }
