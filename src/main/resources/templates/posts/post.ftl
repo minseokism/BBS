@@ -8,7 +8,7 @@
 </head>
 <body>
 	<#include "header.ftl">
-	<#include "./posts/list.ftl">
+	
 <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
 <script src="/js/signup.js"></script>
 </body>
