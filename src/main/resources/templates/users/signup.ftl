@@ -18,17 +18,17 @@
   	 	<div class="form-group">
 	      <label for="id" class="col-lg-2 control-label">ID</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control form-margin" id="id" placeholder="ID" maxlength="30">
-	        <span class="errormsg">error!</span>
+	        <input type="text" class="form-control form-margin" id="id" placeholder="ID" maxlength="30"
+	        		onfocus="" onblur="checkId()">
+	        <span class="errormsg" id="idMsg" style="display:none">필수 정보입니다.</span>
 	      </div>	      
 	    </div>	    
  
-	    
 	    <div class="form-group">
 	      <label for="name" class="col-lg-2 control-label">Name</label>
 	      <div class="col-lg-10">
 	        <input type="text" class="form-control form-margin" id="name" placeholder="Name" maxlength="40">
-            <span class="errormsg">error!</span>
+            <span class="errormsg" id="nameMsg" style="display:none">필수 정보입니다.</span>
 	      </div>
 	    </div>
 	    
@@ -36,7 +36,7 @@
 	      <label for="email" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
 	        <input type="text" class="form-control form-margin" id="email" placeholder="Email" maxlength="40">
-            <span class="errormsg">error!</span>
+            <span class="errormsg" id="emailMsg" style="display:none">필수 정보입니다.</span>
 	      </div>
 	    </div>
 	    
@@ -46,7 +46,7 @@
 	        <input type="password" class="form-control" id="pwd" placeholder="Password" maxlength="40">	
 	        <input type="password" class="form-control form-margin" id="pwd_confirmation" 
 	        	   placeholder="Confirm Password" maxlength="20">	
-	        <span class="errormsg">error!</span> 
+	        <span class="errormsg" id="pwdMsg" style="display:none">필수 정보입니다.</span> 
 	      </div>
 	    </div>
 	    

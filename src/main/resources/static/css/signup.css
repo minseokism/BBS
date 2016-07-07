@@ -5,3 +5,8 @@
 #pwd_confirmation{
 	margin-top: 10px;
 }
+
+.errormsg{
+	color:red;
+	font-size: smaller;
+}
