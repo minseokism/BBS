@@ -14,34 +14,42 @@
 	<form class="form-horizontal" method="post">
 	  <fieldset>
 	    <legend>Sign Up</legend>
+	    
   	 	<div class="form-group">
 	      <label for="id" class="col-lg-2 control-label">ID</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="id" placeholder="ID">
-	      </div>
-	    </div>
+	        <input type="text" class="form-control form-margin" id="id" placeholder="ID" maxlength="30">
+	        <span class="errormsg">error!</span>
+	      </div>	      
+	    </div>	    
+ 
+	    
 	    <div class="form-group">
 	      <label for="name" class="col-lg-2 control-label">Name</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="name" placeholder="Name">
+	        <input type="text" class="form-control form-margin" id="name" placeholder="Name" maxlength="40">
+            <span class="errormsg">error!</span>
 	      </div>
 	    </div>
+	    
 	    <div class="form-group">
 	      <label for="email" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="email" placeholder="Email">
+	        <input type="text" class="form-control form-margin" id="email" placeholder="Email" maxlength="40">
+            <span class="errormsg">error!</span>
 	      </div>
 	    </div>
+	    
 	    <div class="form-group">
-	      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-	      <div class="col-lg-5">
-	        <input type="password" class="form-control" id="pwd" placeholder="Password">
-	      </div>
-     	  <div class="col-lg-5">
-	        <input type="password" class="form-control" id="pwd_confirmation" placeholder="Confirm Password">
+	      <label for="pwd" class="col-lg-2 control-label">Password</label>
+	      <div class="col-lg-10">
+	        <input type="password" class="form-control" id="pwd" placeholder="Password" maxlength="40">	
+	        <input type="password" class="form-control form-margin" id="pwd_confirmation" 
+	        	   placeholder="Confirm Password" maxlength="20">	
+	        <span class="errormsg">error!</span> 
 	      </div>
 	    </div>
-	  
+	    
 	    <div class="form-group">
 	      <div class="col-lg-10 col-lg-offset-2">
 	        <button type="reset" class="btn btn-default">Cancel</button>
