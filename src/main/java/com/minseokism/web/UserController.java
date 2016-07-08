@@ -2,11 +2,15 @@ package com.minseokism.web;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.minseokism.domain.User;
 import com.minseokism.service.UserService;
@@ -14,6 +18,8 @@ import com.minseokism.service.UserService;
 @Controller
 @RequestMapping("users")
 public class UserController {
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	UserService userService;
 	
@@ -22,6 +28,20 @@ public class UserController {
 		List<User> users = userService.findAll();
 		model.addAttribute("users", users);
 		return "/main";
+	}
+	
+	@RequestMapping(value ="check", method = RequestMethod.GET)
+	@ResponseBody boolean check(@RequestParam(value = "id", defaultValue = "unknown") String id,
+								@RequestParam(value = "email", defaultValue ="unknown") String email) {
+		
+		if(!id.equals("unknown")) {
+			log.info("exist? = "+userService.checkId(id));
+			return userService.checkId(id);
+		} else if(!email.equals("unknown")) {
+			log.info("exist? ="+userService.checkEmail(email));
+		}
+		
+		return false;
 	}
 	
 	@RequestMapping(value ="signup", method = RequestMethod.GET)

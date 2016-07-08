@@ -35,7 +35,7 @@ function checkId(){
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4) {
 				var result = xmlhttp.responseText;
-				if (result == 'Y') {
+				if (result == 'false') {
 					idMsg.style.display = "block";
 					idMsg.className = "errormsg gr";
 					idMsg.innerHTML = "가능한 ID 입니다.";
