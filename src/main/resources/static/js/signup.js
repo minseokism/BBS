@@ -58,3 +58,40 @@ function checkId(){
 	
 	return true;
 }
+
+function checkName(){
+	var name = document.getElementById("name").value;
+	var nameMsg = document.getElementById("nameMsg");
+	
+	if(name == "") {
+		nameMsg.className = "errormsg";
+		nameMsg.style.display = "block";
+		nameMsg.innerHTML = "필수 정보입니다."
+		return false;
+	}
+	
+	//id 체크 정규식
+	var isName = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi;
+	
+	//id 유효성 체크
+	if(isName.test(name)) {
+		nameMsg.className = "errormsg";
+		nameMsg.style.display = "block";
+		nameMsg.innerHTML = "이름에는 한글, 영문 대소문자를 이용해 주세요.";
+		return false;
+	} 
+	
+	if(true) {
+		console.log("hi")
+		nameMsg.style.display = "none";
+		return true;
+	}
+	
+	return true;
+}
+function checkEmail(){
+	
+}
+function checkPassword(){
+	
+}
