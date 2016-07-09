@@ -36,7 +36,8 @@
 	    <div class="form-group">
 	      <label for="email" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control form-margin" id="email" placeholder="Email" maxlength="40">
+	        <input type="email" class="form-control form-margin" id="email" placeholder="Email" maxlength="40"
+	        	onblur="checkEmail()">
             <span class="errormsg" id="emailMsg" style="display:none">필수 정보입니다.</span>
 	      </div>
 	    </div>

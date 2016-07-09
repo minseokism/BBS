@@ -35,10 +35,13 @@ public class UserController {
 								@RequestParam(value = "email", defaultValue ="unknown") String email) {
 		
 		if(!id.equals("unknown")) {
-			log.info("exist? = "+userService.checkId(id));
+			log.info("id exist? = "+userService.checkId(id));
 			return userService.checkId(id);
-		} else if(!email.equals("unknown")) {
-			log.info("exist? ="+userService.checkEmail(email));
+		} 
+		
+		if(!email.equals("unknown")) {
+			log.info("email exist? = "+userService.checkEmail(email));
+			return userService.checkEmail(email);
 		}
 		
 		return false;
