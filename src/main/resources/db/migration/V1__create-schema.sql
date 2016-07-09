@@ -1,45 +1,11 @@
 -- 사용자
 CREATE TABLE USER (
-	USER_NO INTEGER      NOT NULL, -- 회원번호
-	ID      VARCHAR(100) NOT NULL, -- 아이디
+	USER_NO INTEGER      PRIMARY KEY AUTO_INCREMENTs, -- 회원번호
+	ID      VARCHAR(100) UNIQUE NOT NULL, -- 아이디
 	PWD     VARCHAR(100) NOT NULL, -- 비밀번호
-	EMAIL   VARCHAR(100) NOT NULL, -- 이메일
+	EMAIL   VARCHAR(100) UNIQUE NOT NULL, -- 이메일
 	NAME    VARCHAR(50)  NOT NULL  -- 이름
 );
-
--- 사용자 기본키
-CREATE UNIQUE INDEX PK_USER
-	ON USER ( -- 사용자
-		USER_NO ASC -- 회원번호
-	);
-
--- 사용자 유니크 인덱스
-CREATE UNIQUE INDEX UIX_USER
-	ON USER ( -- 사용자
-		ID ASC -- 아이디
-	);
-
--- 사용자
-ALTER TABLE USER
-	ADD
-		CONSTRAINT PK_USER -- 사용자 기본키
-		PRIMARY KEY (
-			USER_NO -- 회원번호
-		);
-
--- 사용자
-ALTER TABLE USER
-	ADD
-		CONSTRAINT UK_USER -- 사용자 유니크 제약
-		UNIQUE (
-			ID -- 아이디
-		);
-		
-ALTER TABLE USER
-	MODIFY COLUMN USER_NO INTEGER NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE USER
-	AUTO_INCREMENT = 1;
 			
 -- 게시판
 CREATE TABLE POST (
