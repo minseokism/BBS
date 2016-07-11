@@ -144,6 +144,14 @@ function checkEmail(){
 	
 	return true;
 }
-function checkPassword(){
+function checkPwd1(){
+	
+}
+
+function checkPwd2(){
+	
+}
+
+function checkSubmit(){
 	
 }

@@ -45,9 +45,10 @@
 	    <div class="form-group">
 	      <label for="pwd" class="col-lg-2 control-label">Password</label>
 	      <div class="col-lg-10">
-	        <input type="password" class="form-control" id="pwd" placeholder="Password" maxlength="40">	
+	        <input type="password" class="form-control" id="pwd" placeholder="Password" maxlength="40"
+	        		onblur="checkPwd1()">	
 	        <input type="password" class="form-control form-margin" id="pwd_confirmation" 
-	        	   placeholder="Confirm Password" maxlength="20">	
+	        	   placeholder="Confirm Password" onblur="checkPwd2()" maxlength="20">	
 	        <span class="errormsg" id="pwdMsg" style="display:none">필수 정보입니다.</span> 
 	      </div>
 	    </div>
