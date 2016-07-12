@@ -88,6 +88,7 @@ function checkName(){
 	
 	return true;
 }
+
 function checkEmail(){
 	var email = document.getElementById("email").value;
 	var idEmail = document.getElementById("emailMsg");
@@ -114,7 +115,7 @@ function checkEmail(){
 	
 	emailFlag = false;
 	
-	//id 중복 체크
+	//email 중복 체크
 	try {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", "/users/check?email="+email);
@@ -144,8 +145,76 @@ function checkEmail(){
 	
 	return true;
 }
-function checkPwd1(){
+
+var isShift = false;
+function checkShiftUp(e) {
+	if (e.which && e.which == 16) {
+		isShift = false;
+	}
+}
+
+function checkShiftDown(e) {
+	if (e.which && e.which == 16) {
+		isShift = true;
+	}
+}
+
+function checkCapslk(e){
+	var myKeyCode = 0;
+	var myShiftKey = false;
 	
+	if (window.event) { // IE
+		myKeyCode = e.keyCode;
+		myShiftKey = e.shiftKey;
+	} else if (e.which) { // netscape ff opera
+		myKeyCode = e.which;
+		myShiftKey = isShift;
+	}
+	
+	var pwdMsg = document.getElementById("pwdMsg1");
+
+	if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
+		pwdMsg.style.display = "block";
+		pwdMsg.className = "errormsg";
+		pwdMsg.innerHTML = "Caps Lock이 켜져 있습니다.";
+	} else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
+		pwdMsg.style.display = "block";
+		pwdMsg.className = "errormsg";
+		pwdMsg.innerHTML = "Caps Lock이 켜져 있습니다.";
+	} else {
+		pwdMsg.style.display = "none";
+	}
+}
+
+function checkCapslk2(e){
+	var myKeyCode = 0;
+	var myShiftKey = false;
+	
+	if (window.event) { // IE
+		myKeyCode = e.keyCode;
+		myShiftKey = e.shiftKey;
+	} else if (e.which) { // netscape ff opera
+		myKeyCode = e.which;
+		myShiftKey = isShift;
+	}
+	
+	var pwdMsg = document.getElementById("pwdMsg2");
+
+	if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
+		pwdMsg.style.display = "block";
+		pwdMsg.className = "errormsg";
+		pwdMsg.innerHTML = "Caps Lock이 켜져 있습니다.";
+	} else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
+		pwdMsg.style.display = "block";
+		pwdMsg.className = "errormsg";
+		pwdMsg.innerHTML = "Caps Lock이 켜져 있습니다.";
+	} else {
+		pwdMsg.style.display = "none";
+	}
+}
+
+function checkPwd1(){
+
 }
 
 function checkPwd2(){
