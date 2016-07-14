@@ -3,7 +3,7 @@ var idFlag = false;
 var pwdFlag = false;
 var emailFlag = false;
 
-function checkId(){
+function checkId(event){
 	var id = document.getElementById("id").value;
 	var idMsg = document.getElementById("idMsg");
 	
@@ -59,7 +59,7 @@ function checkId(){
 	return true;
 }
 
-function checkName(){
+function checkName(event){
 	var name = document.getElementById("name").value;
 	var nameMsg = document.getElementById("nameMsg");
 	
@@ -89,7 +89,7 @@ function checkName(){
 	return true;
 }
 
-function checkEmail(){
+function checkEmail(event){
 	var email = document.getElementById("email").value;
 	var idEmail = document.getElementById("emailMsg");
 	
@@ -186,6 +186,43 @@ function checkCapslk(e){
 	}
 }
 
+function checkSpace(str) {
+	if (str.search(/\s/) != -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isValidPwd(str) {
+	var cnt = 0;
+	if (str == "") {
+		return false;
+	}
+	
+	var retVal = checkSpace(str);
+	if (retVal) {
+		return false;
+	}
+	if (str.length < 6) {
+		return false;
+	}
+	for (var i = 0; i < str.length; ++i) {
+		if (str.charAt(0) == str.substring(i, i + 1))
+			++cnt;
+	}
+	if (cnt == str.length) {
+		return false;
+	}
+
+	var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{6,16}$/;
+	if (!isPW.test(str)) {
+		return false;
+	}
+
+	return true;
+}
+
 function checkCapslk2(e){
 	var myKeyCode = 0;
 	var myShiftKey = false;
@@ -213,12 +250,64 @@ function checkCapslk2(e){
 	}
 }
 
-function checkPwd1(){
-
+function checkPwd1(event){
+	checkPwd2("check");
+	pwdFlag=false;
+	
+	var pwd1 = document.getElementById("pwd1").value;
+	var pwdMsg1 = document.getElementById("pwdMsg1");
+	
+	//숨겨둔 메세지 보이게
+	if(pwd1 == "") {
+		pwdMsg1.className = "errormsg";
+		pwdMsg1.style.display = "block";
+		pwdMsg1.innerHTML = "필수 정보입니다."
+		return false;
+	}
+	
+	if(isValidPwd(pwd1) != true){
+		pwdMsg1.style.display = "block";
+		pwdMsg1.className = "errormsg";
+		pwdMsg1.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+		return false;
+	}else {
+		pwdMsg1.className = "errormsg gr"
+		pwdMsg1.style.display = "block";
+		pwdMsg1.innerHTML = "가능합니다."
+		
+		pwdFlag=true;
+		return true;
+	}
+	
+	return true;
 }
 
-function checkPwd2(){
+function checkPwd2(event){
+	var pwd1 = document.getElementById("pwd1").value;
+	var pwd2 = document.getElementById("pwd2").value;
+	var pwdMsg2 = document.getElementById("pwdMsg2");
 	
+	if (pwd2 == "") {
+		pwdMsg2.className = "errormsg";
+		pwdMsg2.style.display = "block";
+		pwdMsg2.innerHTML = "필수 정보입니다.";	
+		return false;
+	}
+	
+	if (pwd1 != pwd2) {
+		pwdMsg2.className = "errormsg";
+		pwdMsg2.style.display = "block";
+		pwdMsg2.innerHTML = "비밀번호가 일치하지 않습니다.";
+		document.getElementById("pwd2").value = "";
+		return false;
+	} else {
+		pwdMsg2.className = "errormsg gr";
+		pwdMsg2.style.display = "block";
+		pwdMsg2.innerHTML = "일치합니다."
+		return true;
+	}
+
+	return true;
 }
 
 function checkSubmit(){

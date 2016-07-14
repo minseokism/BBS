@@ -19,7 +19,7 @@
 	      <label for="id" class="col-lg-2 control-label">ID</label>
 	      <div class="col-lg-10">
 	        <input type="text" class="form-control form-margin" id="id" placeholder="ID" maxlength="30"
-				 	onblur="checkId()">
+				 	onblur="checkId('first')">
 	        <span class="errormsg" id="idMsg" style="display:none">필수 정보입니다.</span>
 	      </div>	      
 	    </div>	    
@@ -28,7 +28,7 @@
 	      <label for="name" class="col-lg-2 control-label">Name</label>
 	      <div class="col-lg-10">
 	        <input type="text" class="form-control form-margin" id="name" placeholder="Name" maxlength="40"
-	        		onblur="checkName()">
+	        		onblur="checkName('check')">
             <span class="errormsg" id="nameMsg" style="display:none">필수 정보입니다.</span>
 	      </div>
 	    </div>
@@ -37,7 +37,7 @@
 	      <label for="email" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
 	        <input type="email" class="form-control form-margin" id="email" placeholder="Email" maxlength="40"
-	        	onblur="checkEmail()">
+	        	onblur="checkEmail('check')">
             <span class="errormsg" id="emailMsg" style="display:none">필수 정보입니다.</span>
 	      </div>
 	    </div>
@@ -46,7 +46,7 @@
 	      <label for="pwd" class="col-lg-2 control-label">Password</label>
 	      <div class="col-lg-10">
 	        <input type="password" class="form-control form-margin" id="pwd1" placeholder="Password" maxlength="40"
-	        		onblur="checkPwd1();" onkeypress="checkCapslk(event);" 
+	        		onblur="checkPwd1('check');" onkeypress="checkCapslk(event);" 
 	        		onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">	
        		<span class="errormsg" id="pwdMsg1" style="display:none">필수 정보입니다.</span>
 	        <input type="password" class="form-control form-margin form-margin-top" id="pwd2" maxlength="20"
