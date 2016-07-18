@@ -1,6 +1,7 @@
 // 제출할때 모두 true일때만 회원가입 가능
 var idFlag = false;
 var pwdFlag = false;
+var nameFlag = false;
 var emailFlag = false;
 
 function checkId(event){
@@ -81,8 +82,11 @@ function checkName(event){
 		return false;
 	} 
 	
+	nameFlag = false;
+	
 	if(true) {
 		nameMsg.style.display = "none";
+		nameFlag = true;
 		return true;
 	}
 	
@@ -265,7 +269,9 @@ function checkPwd1(event){
 		return false;
 	}
 	
-	if(isValidPwd(pwd1) != true){
+	pwdFlag = false;
+	
+	if(!isValidPwd(pwd1)){
 		pwdMsg1.style.display = "block";
 		pwdMsg1.className = "errormsg";
 		pwdMsg1.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
@@ -310,6 +316,23 @@ function checkPwd2(event){
 	return true;
 }
 
-function checkSubmit(){
+function checkSubmit(event){
+	var submit = document.getElementById("submit").value;
+	if (!idFlag) {
+		return false;
+	}
 	
+	if (!nameFlag) {
+		return false;
+	}
+	
+	if (!emailFlag) {
+		return false;
+	}
+	
+	if (!pwdFlag) {
+		return false;
+	}
+	
+	return true;
 }
