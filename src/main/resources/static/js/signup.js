@@ -7,6 +7,7 @@ var emailFlag = false;
 function checkId(event){
 	var id = document.getElementById("id").value;
 	var idMsg = document.getElementById("idMsg");
+	idFlag = false;
 	
 	//숨겨둔 메세지 보이게
 	if(id == "") {
@@ -26,8 +27,6 @@ function checkId(event){
 		idMsg.innerHTML = "5~30자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
 		return false;
 	}
-	
-	idFlag = false;
 	
 	//id 중복 체크
 	try {
@@ -63,6 +62,7 @@ function checkId(event){
 function checkName(event){
 	var name = document.getElementById("name").value;
 	var nameMsg = document.getElementById("nameMsg");
+	nameFlag = false;
 	
 	if(name == "") {
 		nameMsg.className = "errormsg";
@@ -82,8 +82,6 @@ function checkName(event){
 		return false;
 	} 
 	
-	nameFlag = false;
-	
 	if(true) {
 		nameMsg.style.display = "none";
 		nameFlag = true;
@@ -96,6 +94,7 @@ function checkName(event){
 function checkEmail(event){
 	var email = document.getElementById("email").value;
 	var idEmail = document.getElementById("emailMsg");
+	emailFlag = false;
 	
 	//숨겨둔 메세지 보이게
 	if(email == "") {
@@ -116,8 +115,6 @@ function checkEmail(event){
 		emailMsg.innerHTML = "올바른 email 주소를 작성해주세요";
 		return false;
 	}
-	
-	emailFlag = false;
 	
 	//email 중복 체크
 	try {
@@ -256,7 +253,7 @@ function checkCapslk2(e){
 
 function checkPwd1(event){
 	checkPwd2("check");
-	pwdFlag=false;
+	pwdFlag = false;
 	
 	var pwd1 = document.getElementById("pwd1").value;
 	var pwdMsg1 = document.getElementById("pwdMsg1");
@@ -268,8 +265,6 @@ function checkPwd1(event){
 		pwdMsg1.innerHTML = "필수 정보입니다."
 		return false;
 	}
-	
-	pwdFlag = false;
 	
 	if(!isValidPwd(pwd1)){
 		pwdMsg1.style.display = "block";
@@ -317,22 +312,36 @@ function checkPwd2(event){
 }
 
 function checkSubmit(event){
-	var submit = document.getElementById("submit").value;
+	var submit = document.getElementById("submit");
+	submit.type = "button";
+	
 	if (!idFlag) {
+		document.getElementById("id").focus();
 		return false;
 	}
 	
 	if (!nameFlag) {
+		document.getElementById("name").focus();
 		return false;
 	}
 	
 	if (!emailFlag) {
+		document.getElementById("email").focus();
 		return false;
 	}
 	
 	if (!pwdFlag) {
+		document.getElementById("pwd1").focus();
 		return false;
 	}
 	
+	submit.type = "submit";
 	return true;
+}
+
+function resetForm(event){
+	var lis = document.getElementsByClassName('errormsg');
+    for(var i=0; i < lis.length; i++){
+        lis[i].style.display='none';   
+    }
 }
