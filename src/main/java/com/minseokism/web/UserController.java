@@ -54,8 +54,9 @@ public class UserController {
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	String create(User user) {
+		log.info("[signup !] ------------ ");
 		userService.create(user);
-		return "redirect:/main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)

@@ -255,7 +255,7 @@ function checkPwd1(event){
 	checkPwd2("check");
 	pwdFlag = false;
 	
-	var pwd1 = document.getElementById("pwd1").value;
+	var pwd1 = document.getElementById("pwd").value;
 	var pwdMsg1 = document.getElementById("pwdMsg1");
 	
 	//숨겨둔 메세지 보이게
@@ -284,7 +284,7 @@ function checkPwd1(event){
 }
 
 function checkPwd2(event){
-	var pwd1 = document.getElementById("pwd1").value;
+	var pwd1 = document.getElementById("pwd").value;
 	var pwd2 = document.getElementById("pwd2").value;
 	var pwdMsg2 = document.getElementById("pwdMsg2");
 	
