@@ -33,14 +33,15 @@ public class UserController {
 	@RequestMapping(value ="check", method = RequestMethod.GET)
 	@ResponseBody boolean check(@RequestParam(value = "id", defaultValue = "unknown") String id,
 								@RequestParam(value = "email", defaultValue ="unknown") String email) {
+		log.info("[validation check !] ------------");
 		
 		if(!id.equals("unknown")) {
-			log.info("id exist? = "+userService.checkId(id));
+			log.info("[id exist? ]= "+userService.checkId(id));
 			return userService.checkId(id);
 		} 
 		
 		if(!email.equals("unknown")) {
-			log.info("email exist? = "+userService.checkEmail(email));
+			log.info("[email exist? ]= "+userService.checkEmail(email));
 			return userService.checkEmail(email);
 		}
 		
@@ -49,12 +50,13 @@ public class UserController {
 	
 	@RequestMapping(value ="signup", method = RequestMethod.GET)
 	String signUp() {
+		log.info("[signup !] ------------ ");
 		return "users/signup";
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	String create(User user) {
-		log.info("[signup !] ------------ ");
+		log.info("[signup submit !] ------------ ");
 		userService.create(user);
 		return "redirect:/";
 	}
