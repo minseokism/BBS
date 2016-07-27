@@ -58,7 +58,7 @@ public class UserController {
 	String create(User user) {
 		log.info("[signup submit !] ------------ ");
 		userService.create(user);
-		return "redirect:/";
+		return "users/signup_success";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
