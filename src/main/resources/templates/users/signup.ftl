@@ -65,7 +65,7 @@
 	  </fieldset>
 	</form>
 </div>
-<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+<#include "../footer.ftl">
 <script src="/js/signup.js"></script>
 </body>
 </html>
