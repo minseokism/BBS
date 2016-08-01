@@ -56,7 +56,7 @@ public class UserController {
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	String create(User user) {
-		log.info("[signup submit !] ------------ ");
+		log.info("[signup submit !] ------------ ");		
 		userService.create(user);
 		return "users/signup_success";
 	}

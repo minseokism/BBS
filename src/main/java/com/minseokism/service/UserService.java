@@ -2,6 +2,7 @@ package com.minseokism.service;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,13 @@ public class UserService{
 		return userRepository.findOne(id);
 	}
 	
-	public User create(User user) {	
-		return userRepository.save(user);
+	public User create(User user) {
+		if (pwdRegexp(user.getPwd())) {
+			user.setPwd(pwdEncryption(user.getPwd()));
+			return userRepository.save(user);
+		} else {
+			return null;
+		}		
 	}
 	
 	public User update(User user) {
@@ -39,6 +45,15 @@ public class UserService{
 	
 	public boolean checkEmail(String email){
 		return userRepository.existsByEmail(email);
+	}
+	
+	public Boolean pwdRegexp(String pwd) {
+		String regexp ="[A-Za-z0-9!@#$%^&*_\\(\\)\\{\\}\\[\\]~`+=-]{6,20}$";
+		return pwd.matches(regexp);
+	}
+	
+	private String pwdEncryption(String pwd) {
+		return BCrypt.hashpw(pwd, BCrypt.gensalt());
 	}
 	
 }

@@ -43,6 +43,7 @@ dependencies {
 	
 	compile("com.navercorp.lucy:lucy-xss:1.6.3")
     compile("com.navercorp.lucy:lucy-xss-servlet:2.0.0")
+    compile('de.svenkubiak:jBCrypt:0.4.1')
 }
 
 
