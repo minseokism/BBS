@@ -49,16 +49,28 @@ public class UserController {
 	}
 	
 	@RequestMapping(value ="signup", method = RequestMethod.GET)
-	String signUp() {
-		log.info("[signup !] ------------ ");
+	String signUpPage() {
+		log.info("[signup page !] ------------ ");
 		return "users/signup";
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	String create(User user) {
+	String signUp(User user) {
 		log.info("[signup submit !] ------------ ");		
 		userService.create(user);
 		return "users/signup_success";
+	}
+	
+	@RequestMapping(value ="signin", method = RequestMethod.GET)
+	String signInPage() {
+		log.info("[signin page !] ------------ ");
+		return "users/signin";
+	}
+	
+	@RequestMapping(value = "signin", method = RequestMethod.POST)
+	String signIn(User user) {
+		log.info("[signin !] ------------ ");
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -76,8 +88,5 @@ public class UserController {
 		return "redirect:/main";
 	}
 	
-	@RequestMapping(value = "singin", method = RequestMethod.POST)
-	String signIn() {
-		return "redirect:/main";
-	}
+
 }

@@ -17,7 +17,7 @@
 	    
   	 	<div class="form-group">
 	      <label for="id" class="col-lg-2 control-label">ID</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="text" class="form-control form-margin" name="id" id="id" placeholder="ID" maxlength="30"
 				 	onblur="checkId('first')">
 	        <span class="errormsg" id="idMsg" style="display:none">필수 정보입니다.</span>
@@ -26,7 +26,7 @@
  
 	    <div class="form-group">
 	      <label for="name" class="col-lg-2 control-label">Name</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="text" class="form-control form-margin" name="name" id="name" placeholder="Name" maxlength="20"
 	        		onblur="checkName('check')">
             <span class="errormsg" id="nameMsg" style="display:none">필수 정보입니다.</span>
@@ -35,7 +35,7 @@
 	    
 	    <div class="form-group">
 	      <label for="email" class="col-lg-2 control-label">Email</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="email" class="form-control form-margin" name="email" id="email" placeholder="Email" maxlength="40"
 	        	onblur="checkEmail('check')">
             <span class="errormsg" id="emailMsg" style="display:none">필수 정보입니다.</span>
@@ -44,7 +44,7 @@
 	    
 	    <div class="form-group">
 	      <label for="pwd" class="col-lg-2 control-label">Password</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="40"
 	        		onblur="checkPwd1('check');" onkeypress="checkCapslk(event);" 
 	        		onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">	
@@ -57,7 +57,7 @@
 	    </div>
 	    
 	    <div class="form-group">
-	      <div class="col-lg-10 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-2">
 	        <button type="reset" class="btn btn-default" onclick="resetForm(event)">Cancel</button>
 	        <button type="button" id="submit" class="btn btn-primary" onclick="checkSubmit(event)">Submit</button>
 	      </div>
