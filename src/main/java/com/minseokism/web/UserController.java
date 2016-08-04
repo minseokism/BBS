@@ -68,9 +68,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
-	String signIn(User user) {
+	String signIn(User user, Model model) {
 		log.info("[signin !] ------------ ");
-		return "redirect:/";
+		User signInUser = userService.signIn(user);
+		
+		if(signInUser != null) {
+			log.info("[signin success !] ------------ ");
+			model.addAttribute("id", signInUser.getId());
+			return "/"; 
+		} else {
+			log.info("[signin failure !] ------------ ");
+			return "redirect:/users/signin#failure";
+		}
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)

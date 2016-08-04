@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -60,4 +61,15 @@ public class UserServiceTest {
 		userRepository.delete(user);
 	}
 	
+	@Test
+	public void signinTest() {
+		user = new User();
+		user.setId("radio");
+		user.setPwd("a4568520");
+		
+		User signInUser = userRepository.findById(user.getId());
+		boolean test = BCrypt.checkpw(user.getPwd(), signInUser.getPwd());
+		
+		Assert.assertEquals(true, test);
+	}
 }

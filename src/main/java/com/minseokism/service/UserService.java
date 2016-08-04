@@ -31,6 +31,16 @@ public class UserService{
 		}		
 	}
 	
+	public User signIn(User user) {
+		User signInUser = userRepository.findById(user.getId());
+		
+		if (signInUser != null && BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {
+			return signInUser;
+		} else {
+			return null;
+		}
+	}
+	
 	public User update(User user) {
 		return userRepository.save(user);
 	}
@@ -53,7 +63,7 @@ public class UserService{
 	}
 	
 	private String pwdEncryption(String pwd) {
-		return BCrypt.hashpw(pwd, BCrypt.gensalt());
+		return BCrypt.hashpw(pwd, BCrypt.gensalt(10));
 	}
 	
 }
