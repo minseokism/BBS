@@ -36,4 +36,6 @@ public class User {
 	@Pattern(regexp = "^[가-힣ㅣa-zA-Z0-9]{0,19}$")
 	@Column(nullable = false)
 	private String name;
+	
+	private int state;
 }
