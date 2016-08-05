@@ -70,15 +70,25 @@ public class UserController {
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
 	String signIn(User user, Model model) {
 		log.info("[signin !] ------------ ");
+		String tryId = user.getId();
 		User signInUser = userService.signIn(user);
+		int state = signInUser.getState();
 		
-		if(signInUser != null) {
+		if (state == 2) {
 			log.info("[signin success !] ------------ ");
-			model.addAttribute("id", signInUser.getId());
+			model.addAttribute("signInId", signInUser.getId());
 			return "/"; 
+		
+		} else if (state == 1){
+			log.info("[signin failure : uncorrect password !] ------------ ");
+			model.addAttribute("state", state);
+			model.addAttribute("tryId", tryId);
+			return "/users/signin";
+		
 		} else {
-			log.info("[signin failure !] ------------ ");
-			return "redirect:/users/signin#failure";
+			log.info("[signin failure : not exist !] ------------ ");
+			model.addAttribute("state", state);
+			return "/users/signin";
 		}
 	}
 	

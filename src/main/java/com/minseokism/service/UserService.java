@@ -34,11 +34,20 @@ public class UserService{
 	public User signIn(User user) {
 		User signInUser = userRepository.findById(user.getId());
 		
-		if (signInUser != null && BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {
-			return signInUser;
+		//errorState 0 = id 존재하지않을 때 , 1 = id는 존재, 비밀번호 틀릴 때, 2 = 맞을 때
+		if (signInUser == null) {
+			signInUser = new User();
+			signInUser.setState(0);
+		
+		} else if (BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {
+			signInUser.setState(2);
+		
 		} else {
-			return null;
+			signInUser = new User();
+			signInUser.setState(1);
 		}
+		
+		return signInUser;
 	}
 	
 	public User update(User user) {
