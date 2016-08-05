@@ -10,7 +10,7 @@ function checkId(event){
 	idFlag = false;
 	
 	//숨겨둔 메세지 보이게
-	if(id == "") {
+	if(id === "") {
 		idMsg.className = "errormsg";
 		idMsg.style.display = "block";
 		idMsg.innerHTML = "필수 정보입니다."
@@ -33,9 +33,9 @@ function checkId(event){
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", "/users/check?id="+id);
 		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4) {
+			if (xmlhttp.readyState === 4) {
 				var result = xmlhttp.responseText;
-				if (result == 'false') {
+				if (result === 'false') {
 					idMsg.style.display = "block";
 					idMsg.className = "errormsg gr";
 					idMsg.innerHTML = "가능한 ID 입니다.";
@@ -64,7 +64,7 @@ function checkName(event){
 	var nameMsg = document.getElementById("nameMsg");
 	nameFlag = false;
 	
-	if(name == "") {
+	if(name === "") {
 		nameMsg.className = "errormsg";
 		nameMsg.style.display = "block";
 		nameMsg.innerHTML = "필수 정보입니다."
@@ -97,7 +97,7 @@ function checkEmail(event){
 	emailFlag = false;
 	
 	//숨겨둔 메세지 보이게
-	if(email == "") {
+	if(email === "") {
 		emailMsg.className = "errormsg";
 		emailMsg.style.display = "block";
 		emailMsg.innerHTML = "필수 정보입니다."
@@ -197,7 +197,7 @@ function checkSpace(str) {
 
 function isValidPwd(str) {
 	var cnt = 0;
-	if (str == "") {
+	if (str === "") {
 		return false;
 	}
 	
@@ -212,7 +212,7 @@ function isValidPwd(str) {
 		if (str.charAt(0) == str.substring(i, i + 1))
 			++cnt;
 	}
-	if (cnt == str.length) {
+	if (cnt === str.length) {
 		return false;
 	}
 
@@ -259,7 +259,7 @@ function checkPwd1(event){
 	var pwdMsg1 = document.getElementById("pwdMsg1");
 	
 	//숨겨둔 메세지 보이게
-	if(pwd1 == "") {
+	if(pwd1 === "") {
 		pwdMsg1.className = "errormsg";
 		pwdMsg1.style.display = "block";
 		pwdMsg1.innerHTML = "필수 정보입니다."
@@ -288,7 +288,7 @@ function checkPwd2(event){
 	var pwd2 = document.getElementById("pwd2").value;
 	var pwdMsg2 = document.getElementById("pwdMsg2");
 	
-	if (pwd2 == "") {
+	if (pwd2 === "") {
 		pwdMsg2.className = "errormsg";
 		pwdMsg2.style.display = "block";
 		pwdMsg2.innerHTML = "필수 정보입니다.";	

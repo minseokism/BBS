@@ -6,7 +6,7 @@
 	<link rel="stylesheet"
 	href="/css/bootstrap.min.css"/>
 	<link rel="stylesheet"
-	href="/css/signup.css"/>
+	href="/css/users.css"/>
 </head>	
 <body>
 <#include "../header.ftl">
