@@ -97,6 +97,13 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(value = "signout", method = RequestMethod.GET)
+	String signOut(HttpSession session) {
+		log.info("[signout !] ------------ ");
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	String updateForm() {
 		return "users/update";
