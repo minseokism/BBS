@@ -16,7 +16,8 @@
         <li><a href="#">Link</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">        
-     	<#assign id = signInId?if_exists>
+     	<#assign user = signInUser?if_exists>
+     	<#assign id = user.id?if_exists>
        	<#if id == "">
        	 <li><a href="/users/signup">Sign Up</a></li>
        	 <li><a href="/users/signin">Sign In</a></li>

@@ -2,6 +2,8 @@ package com.minseokism.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,15 +70,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
-	String signIn(User user, Model model) {
+	String signIn(User user, Model model, @RequestParam(value="autoSignIn",defaultValue = "off") String autoSignIn,
+					HttpSession session) {
 		log.info("[signin !] ------------ ");
-		String tryId = user.getId();
+		String tryId = user.getId(); //로그인 실패에서 비밀번호만 틀렸을경우 사용
 		User signInUser = userService.signIn(user);
 		int state = signInUser.getState();
 		
+				
 		if (state == 2) {
 			log.info("[signin success !] ------------ ");
-			model.addAttribute("signInId", signInUser.getId());
+			session.setAttribute("signInUser", signInUser);
+			session.setMaxInactiveInterval(60*60);
 			return "/"; 
 		
 		} else if (state == 1){
