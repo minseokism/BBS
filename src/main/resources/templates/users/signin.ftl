@@ -30,7 +30,7 @@
 		        	maxlength="20">
 	        	<div class="checkbox">
 		          <label>
-		            <input type="checkbox">Stay signed in
+		            <input type="checkbox" name="autoSignIn" id="autoSignIn2">Stay signed in
 		          </label>	
         		</div>
 		      </div>

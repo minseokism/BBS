@@ -2,6 +2,9 @@ package com.minseokism.web;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -71,17 +74,25 @@ public class UserController {
 	
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
 	String signIn(User user, Model model, @RequestParam(value="autoSignIn",defaultValue = "off") String autoSignIn,
-					HttpSession session) {
+					HttpSession session, HttpServletResponse res) {
 		log.info("[signin !] ------------ ");
 		String tryId = user.getId(); //로그인 실패에서 비밀번호만 틀렸을경우 사용
 		User signInUser = userService.signIn(user);
-		int state = signInUser.getState();
-		
+		int state = signInUser.getState();		
 				
 		if (state == 2) {
 			log.info("[signin success !] ------------ ");
 			session.setAttribute("signInUser", signInUser);
 			session.setMaxInactiveInterval(60*60);
+			
+			if(autoSignIn.equals("on")){
+				log.info("[signin autoSignIn !] ------------ ");
+				Cookie autoSignInCookie = new Cookie("auto","sample");  
+				autoSignInCookie.setPath("/");
+				autoSignInCookie.setMaxAge(200*24*60*60);
+				res.addCookie(autoSignInCookie);
+			}
+			
 			return "/"; 
 		
 		} else if (state == 1){
@@ -98,9 +109,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "signout", method = RequestMethod.GET)
-	String signOut(HttpSession session) {
+	String signOut(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
 		log.info("[signout !] ------------ ");
 		session.invalidate();
+		
+		Cookie[] cookies = req.getCookies();
+		for (int i = 0 ; i<cookies.length; i++){
+			cookies[i].setMaxAge(0);     
+			cookies[i].setPath("/");
+			res.addCookie(cookies[i]);
+		}
 		return "redirect:/";
 	}
 	
