@@ -1,5 +1,6 @@
 package com.minseokism.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -77,23 +78,26 @@ public class UserController {
 					HttpSession session, HttpServletResponse res) {
 		log.info("[signin !] ------------ ");
 		String tryId = user.getId(); //로그인 실패에서 비밀번호만 틀렸을경우 사용
-		User signInUser = userService.signIn(user);
+		User signInUser = userService.signIn(user, autoSignIn);
 		int state = signInUser.getState();		
 				
 		if (state == 2) {
 			log.info("[signin success !] ------------ ");
 			session.setAttribute("signInUser", signInUser);
 			session.setMaxInactiveInterval(60*60);
+			return "redirect:/";
 			
-			if(autoSignIn.equals("on")){
-				log.info("[signin autoSignIn !] ------------ ");
-				Cookie autoSignInCookie = new Cookie("auto","sample");  
-				autoSignInCookie.setPath("/");
-				autoSignInCookie.setMaxAge(200*24*60*60);
-				res.addCookie(autoSignInCookie);
-			}
+		} else if (state == 3){
+			log.info("[signin success : autoSignIn !] ------------ ");
+			HashMap<String, String> userMap = new HashMap<String, String>();
+			userMap.put("id", signInUser.getId());
+			userMap.put("token", signInUser.getToken());
 			
-			return "/"; 
+			Cookie autoSignInCookie = new Cookie("asiu", userMap.toString());  				
+			autoSignInCookie.setPath("/");
+			autoSignInCookie.setMaxAge(200*24*60*60);
+			res.addCookie(autoSignInCookie);		
+			return "redirect:/"; 
 		
 		} else if (state == 1){
 			log.info("[signin failure : uncorrect password !] ------------ ");
@@ -137,5 +141,4 @@ public class UserController {
 		return "redirect:/main";
 	}
 	
-
 }
