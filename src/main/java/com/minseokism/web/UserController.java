@@ -57,7 +57,7 @@ public class UserController {
 	@RequestMapping(value ="signup", method = RequestMethod.GET)
 	String signUpPage() {
 		log.info("[signup page !] ------------ ");
-		return "users/signup";
+		return "users/signupForm";
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
@@ -70,7 +70,7 @@ public class UserController {
 	@RequestMapping(value ="signin", method = RequestMethod.GET)
 	String signInPage() {
 		log.info("[signin page !] ------------ ");
-		return "users/signin";
+		return "users/signinForm";
 	}
 	
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
@@ -103,12 +103,12 @@ public class UserController {
 			log.info("[signin failure : uncorrect password !] ------------ ");
 			model.addAttribute("state", state);
 			model.addAttribute("tryId", tryId);
-			return "/users/signin";
+			return "/users/signinForm";
 		
 		} else {
 			log.info("[signin failure : not exist !] ------------ ");
 			model.addAttribute("state", state);
-			return "/users/signin";
+			return "/users/signinForm";
 		}
 	}
 	
@@ -128,7 +128,7 @@ public class UserController {
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	String updateForm() {
-		return "users/update";
+		return "users/updateForm";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)

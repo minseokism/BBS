@@ -72,4 +72,5 @@ public class UserServiceTest {
 		
 		Assert.assertEquals(true, test);
 	}
+	
 }

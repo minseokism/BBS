@@ -25,7 +25,7 @@ public class HomeController {
 	
     @RequestMapping("/")
     String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
-    	if(req.getCookies() != null) {
+    	if(req.getCookies() != null && session.isNew()) {
     		Cookie[] cookies = req.getCookies();
     		User user;
         	for (int i = 0 ; i<cookies.length; i++){
