@@ -115,6 +115,8 @@ public class UserController {
 	@RequestMapping(value = "signout", method = RequestMethod.GET)
 	String signOut(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
 		log.info("[signout !] ------------ ");
+		User user = (User)session.getAttribute("signInUser");
+		userService.deleteToken(user);
 		session.invalidate();
 		
 		Cookie[] cookies = req.getCookies();
@@ -123,17 +125,28 @@ public class UserController {
 			cookies[i].setPath("/");
 			res.addCookie(cookies[i]);
 		}
+		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	String updateForm() {
-		return "users/updateForm";
+		log.info("[updateGate page !] ------------ ");
+		return "users/updateGate";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	String update() {
-		return "redirect:/main";
+	String update(User user, Model model) {
+		log.info("[updateGate signin !] ------------ ");
+		User updateUser = userService.signIn(user, "off");
+		int state = updateUser.getState();
+		
+		if (state == 1) {
+			model.addAttribute("error", "error");
+			return "users/updateGate";
+		} else{
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)

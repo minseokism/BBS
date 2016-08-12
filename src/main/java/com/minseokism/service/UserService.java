@@ -91,6 +91,12 @@ public class UserService{
 		return BCrypt.hashpw(new SecureRandom().nextDouble()+"", BCrypt.gensalt(12, new SecureRandom()));
 	}
 	
+	public void deleteToken(User user) {
+		user.setToken("");
+		user.setState(2);
+		userRepository.save(user);
+	}
+	
 	public User autoSignIn(Cookie cookie) {
 		HashMap<String, String> data = convertToStringToHashMap(cookie.getValue());
 		User signInUser = userRepository.findById(data.get("id"));

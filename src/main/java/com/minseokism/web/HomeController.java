@@ -24,11 +24,12 @@ public class HomeController {
 	UserService userService;
 	
     @RequestMapping("/")
-    String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
-    	if(req.getCookies() != null && session.isNew()) {
+    String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) { 	
+    	if(req.getCookies() != null && session.getAttribute("signInUser") == null) {
+    		User user;    		
     		Cookie[] cookies = req.getCookies();
-    		User user;
-        	for (int i = 0 ; i<cookies.length; i++){
+        
+    		for (int i = 0 ; i<cookies.length; i++){
         		if(cookies[i].getName().equals("asiu")){
         			log.info("[autoSignInUser !] ------------ ");
         			user = userService.autoSignIn(cookies[i]);
