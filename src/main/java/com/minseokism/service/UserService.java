@@ -19,6 +19,8 @@ public class UserService{
 	@Autowired
 	UserRepository userRepository;
 	
+	public enum state{notExist, uncorrectPwd, signIn, autoSignIn};
+	
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
@@ -38,25 +40,23 @@ public class UserService{
 	
 	public User signIn(User user, String autoSignIn) {
 		User signInUser = userRepository.findById(user.getId());
-		
-		//errorState 0 = id 존재하지않을 때 , 1 = id는 존재, 비밀번호 틀릴 때, 2 = 맞을 때, 3 == 자동로그인
+
 		if (signInUser == null) {
 			signInUser = new User();
-			signInUser.setState(0);
+			signInUser.setState(state.notExist.ordinal());
 		
 		} else if (BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {			
-			signInUser.setState(2);
+			signInUser.setState(state.signIn.ordinal());
 			
-			if(autoSignIn.equals("on")) {
+			if("on".equals(autoSignIn)) {
 				signInUser.setToken(createToken());
-				signInUser.setState(3);
+				signInUser.setState(state.autoSignIn.ordinal());
 				userRepository.save(signInUser);		
 			}
 			
 		} else {
 			signInUser = new User();
-			signInUser.setState(1);
-			
+			signInUser.setState(state.uncorrectPwd.ordinal());			
 		}
 		
 		return signInUser;
@@ -78,7 +78,7 @@ public class UserService{
 		return userRepository.existsByEmail(email);
 	}
 	
-	public Boolean pwdRegexp(String pwd) {
+	public boolean pwdRegexp(String pwd) {
 		String regexp ="[A-Za-z0-9!@#$%^&*_\\(\\)\\{\\}\\[\\]~`+=-]{6,20}$";
 		return pwd.matches(regexp);
 	}
@@ -93,7 +93,7 @@ public class UserService{
 	
 	public void deleteToken(User user) {
 		user.setToken("");
-		user.setState(2);
+		user.setState(state.signIn.ordinal());
 		userRepository.save(user);
 	}
 	
@@ -101,7 +101,11 @@ public class UserService{
 		HashMap<String, String> data = convertToStringToHashMap(cookie.getValue());
 		User signInUser = userRepository.findById(data.get("id"));
 		
-		if(signInUser.getToken().equals(data.get("token"))){
+		if(signInUser == null) {
+			return null;
+		}
+		
+		if(data.get("token").equals(signInUser.getToken())){
 			signInUser.setToken(createToken());
 			userRepository.save(signInUser);
 			return signInUser;

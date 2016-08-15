@@ -30,7 +30,7 @@ public class HomeController {
     		Cookie[] cookies = req.getCookies();
         
     		for (int i = 0 ; i<cookies.length; i++){
-        		if(cookies[i].getName().equals("asiu")){
+        		if("asiu".equals(cookies[i].getName())){
         			log.info("[autoSignInUser !] ------------ ");
         			user = userService.autoSignIn(cookies[i]);
                 	if(user != null) {

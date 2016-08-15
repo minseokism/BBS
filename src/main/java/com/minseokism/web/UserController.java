@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.minseokism.domain.User;
 import com.minseokism.service.UserService;
+import com.minseokism.service.UserService.state;
 
 @Controller
 @RequestMapping("users")
@@ -79,15 +80,15 @@ public class UserController {
 		log.info("[signin !] ------------ ");
 		String tryId = user.getId(); //로그인 실패에서 비밀번호만 틀렸을경우 사용
 		User signInUser = userService.signIn(user, autoSignIn);
-		int state = signInUser.getState();		
+		int stateCode = signInUser.getState();		
 				
-		if (state == 2) {
+		if (state.signIn.ordinal() == stateCode) {
 			log.info("[signin success !] ------------ ");
 			session.setAttribute("signInUser", signInUser);
 			session.setMaxInactiveInterval(60*60);
 			return "redirect:/";
 			
-		} else if (state == 3){
+		} else if (state.autoSignIn.ordinal() == stateCode){
 			log.info("[signin success : autoSignIn !] ------------ ");
 			HashMap<String, String> userMap = new HashMap<String, String>();
 			userMap.put("id", signInUser.getId());
@@ -99,15 +100,15 @@ public class UserController {
 			res.addCookie(autoSignInCookie);		
 			return "redirect:/"; 
 		
-		} else if (state == 1){
+		} else if (state.uncorrectPwd.ordinal() == stateCode){
 			log.info("[signin failure : uncorrect password !] ------------ ");
-			model.addAttribute("state", state);
+			model.addAttribute("state", stateCode);
 			model.addAttribute("tryId", tryId);
 			return "/users/signinForm";
 		
 		} else {
 			log.info("[signin failure : not exist !] ------------ ");
-			model.addAttribute("state", state);
+			model.addAttribute("state", stateCode);
 			return "/users/signinForm";
 		}
 	}
@@ -139,9 +140,9 @@ public class UserController {
 	String update(User user, Model model) {
 		log.info("[updateGate signin !] ------------ ");
 		User updateUser = userService.signIn(user, "off");
-		int state = updateUser.getState();
+		int stateCode = updateUser.getState();
 		
-		if (state == 1) {
+		if (state.uncorrectPwd.ordinal() == stateCode) {
 			model.addAttribute("error", "error");
 			return "users/updateGate";
 		} else{
