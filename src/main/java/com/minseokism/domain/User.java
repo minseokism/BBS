@@ -1,9 +1,15 @@
 package com.minseokism.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -39,5 +45,12 @@ public class User {
 	
 	private int state;
 	
-	private String token;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Token> tokens;
+	
+	public boolean addToken(Token token) {
+		if(tokens == null)
+			tokens = new ArrayList<>(); 
+		return this.tokens.add(token);
+    }
 }
