@@ -11,3 +11,5 @@ spring:
     username: minseokism
     password: A456852)
     driver-class-name: com.mysql.jdbc.Driver
+  session:
+    store-type: none
