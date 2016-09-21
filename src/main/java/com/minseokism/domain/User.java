@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -43,9 +44,10 @@ public class User {
 	@Column(nullable = false)
 	private String name;
 	
+	@Transient
 	private int state;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Token> tokens;
 	
 	public boolean addToken(Token token) {
