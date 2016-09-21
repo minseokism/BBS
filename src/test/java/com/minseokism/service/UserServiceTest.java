@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -60,7 +59,7 @@ public class UserServiceTest {
 		userRepository.delete(user);
 	}
 	
-	@Test
+/*	@Test
 	public void signinTest() {
 		user = new User();
 		user.setId("radio");
@@ -70,10 +69,10 @@ public class UserServiceTest {
 		boolean test = BCrypt.checkpw(user.getPwd(), signInUser.getPwd());
 		
 		Assert.assertEquals(true, test);
-	}
+	}*/
 	
 	@Test
-	public void simplexJoinTest() {
+	public void duplexJoinTest() {
 		User tempUser = new User();
 		tempUser.setEmail("ediya3@naver.com");
 		tempUser.setId("ediya_us3");
@@ -83,21 +82,22 @@ public class UserServiceTest {
 		Token token1 = new Token();
 		token1.setToken("hi");
 		token1.setTokenId("bye");
+		token1.setUser(tempUser);
 		
-		Token token2 = new Token();
-		token2.setToken("hi2");
-		token2.setTokenId("bye2");
-
+		Token token2 = new Token("hi2","bye2",tempUser);
+		
 		Token token3 = new Token();
 		token3.setToken("hi3");
 		token3.setTokenId("bye3");
+		token3.setUser(tempUser);
 		
 		tempUser.addToken(token1);
 		tempUser.addToken(token2);
-		tempUser.addToken(token3);
+		tempUser.getTokens().add(token3);
+		
 		
 		userRepository.save(tempUser);
-		userRepository.delete(tempUser);
+		
 	}
 	
 }

@@ -48,7 +48,7 @@ public class User {
 	private int state;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Token> tokens;
+	private List<Token> tokens = new ArrayList<Token>();
 	
 	public boolean addToken(Token token) {
 		if(tokens == null)
