@@ -12,4 +12,17 @@ spring:
     password: A456852)
     driver-class-name: com.mysql.jdbc.Driver
   session:
-    store-type: none
+    store-type: none    
+  jpa:
+   show-sql: false
+   hibernate:
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: update
+   properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      
+
+    
+      
