@@ -36,10 +36,7 @@
     2. 프론트
         - FreeMarker
         - JQuery
-        - Angular & React
         - BootStrap
-        - Grunt
-        - Bower
         
     3. 기타
         - Gradle
