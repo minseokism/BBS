@@ -36,3 +36,9 @@ overridedb.*
 *.jar
 .DS_Store
 .factorypath
+.idea
+*.iml
+out
+gen
+/classes
+.gradle
