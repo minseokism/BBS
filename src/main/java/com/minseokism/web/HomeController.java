@@ -1,7 +1,5 @@
 package com.minseokism.web;
 
-import java.util.HashMap;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,32 +22,31 @@ public class HomeController {
 	UserService userService;
 	
     @RequestMapping("/")
-    String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) { 	
-    	if(req.getCookies() != null && session.getAttribute("signInUser") == null) {
-    		User user;    		
-    		Cookie[] cookies = req.getCookies();
-        
-    		for (int i = 0 ; i<cookies.length; i++){
-        		if("asiu".equals(cookies[i].getName())){
-        			log.info("[autoSignInUser !] ------------ ");
-        			user = userService.autoSignIn(cookies[i]);
-                	if(user != null) {
-            			session.setAttribute("signInUser", user);
-            			session.setMaxInactiveInterval(60*60);
-            			
-            			HashMap<String, String> userMap = new HashMap<String, String>();
-            			userMap.put("id", user.getId());
-            			userMap.put("token", user.getToken());
-            			
-            			cookies[i].setValue(userMap.toString());
-            			cookies[i].setPath("/");
-            			cookies[i].setMaxAge(200*24*60*60);
-            			
-            			res.addCookie(cookies[i]);
-                	}
-        		}
-    		}
-    	} 	
-		return "/main";
+    String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
+        log.info("[main !] ------------ ");
+        User autoSignInUser = null;
+
+        if (req.getCookies() != null) {
+            Cookie[] cookies = req.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("autoSignInCookie")) {
+                    autoSignInUser = userService.autoSignIn(cookie);
+                }
+            }
+        }
+
+        if (autoSignInUser != null) {
+            log.info("[auto sign in user !] ------------ ");
+            Cookie autoSignInCookie = new Cookie("autoSignInCookie",autoSignInUser.getToken());
+
+            autoSignInCookie.setPath("/");
+            autoSignInCookie.setMaxAge(200*24*60*60);
+            res.addCookie(autoSignInCookie);
+
+            session.setAttribute("signInUser", autoSignInUser);
+            session.setMaxInactiveInterval(60*60);
+        }
+
+        return "/main";
     }
 }

@@ -1,11 +1,7 @@
 package com.minseokism.service;
 
 import java.security.SecureRandom;
-import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.servlet.http.Cookie;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +10,19 @@ import org.springframework.stereotype.Service;
 import com.minseokism.domain.User;
 import com.minseokism.repository.UserRepository;
 
+import javax.servlet.http.Cookie;
+
 @Service
 public class UserService{
 	@Autowired
 	UserRepository userRepository;
-	
-	public enum state{notExist, uncorrectPwd, signIn, autoSignIn};
+
+	@Autowired
+	EncryptionService encryptionService;
+
+	private final String ENCRYPTIONID = "ToBeOrNotToBe";
+
+	public enum state{notExist, incorrectPwd, signIn, autoSignIn};
 	
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -40,23 +43,23 @@ public class UserService{
 	
 	public User signIn(User user, String autoSignIn) {
 		User signInUser = userRepository.findById(user.getId());
-
+		
 		if (signInUser == null) {
 			signInUser = new User();
 			signInUser.setState(state.notExist.ordinal());
 		
-		} else if (BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {			
+		} else if (BCrypt.checkpw(user.getPwd(),signInUser.getPwd())) {
 			signInUser.setState(state.signIn.ordinal());
 			
-			if("on".equals(autoSignIn)) {
-				signInUser.setToken(createToken());
+			if("on".equals(autoSignIn)) {				
+				signInUser.setToken(createToken(signInUser));
 				signInUser.setState(state.autoSignIn.ordinal());
-				userRepository.save(signInUser);		
+				userRepository.save(signInUser);
 			}
 			
 		} else {
 			signInUser = new User();
-			signInUser.setState(state.uncorrectPwd.ordinal());			
+			signInUser.setState(state.incorrectPwd.ordinal());
 		}
 		
 		return signInUser;
@@ -87,41 +90,38 @@ public class UserService{
 		return BCrypt.hashpw(pwd, BCrypt.gensalt(10, new SecureRandom()));
 	}
 	
-	private String createToken() {
-		return BCrypt.hashpw(new SecureRandom().nextDouble()+"", BCrypt.gensalt(12, new SecureRandom()));
+	private String createToken(User user) {
+		String encId = "";
+		try {
+			encId = encryptionService.encrypt(ENCRYPTIONID,user.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return encId + "@@" + BCrypt.hashpw(new SecureRandom().nextDouble()+"", BCrypt.gensalt(12, new SecureRandom()));
 	}
-	
+
 	public void deleteToken(User user) {
 		user.setToken("");
 		user.setState(state.signIn.ordinal());
 		userRepository.save(user);
 	}
-	
+
 	public User autoSignIn(Cookie cookie) {
-		HashMap<String, String> data = convertToStringToHashMap(cookie.getValue());
-		User signInUser = userRepository.findById(data.get("id"));
-		
-		if(signInUser == null) {
-			return null;
+		String[] tokens = cookie.getValue().split("@@");
+
+		String decId = "";
+
+		try {
+			decId = encryptionService.decrypt(ENCRYPTIONID,tokens[0]);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		if(data.get("token").equals(signInUser.getToken())){
-			signInUser.setToken(createToken());
-			userRepository.save(signInUser);
-			return signInUser;
+
+		User autoSignUser = userRepository.findById(decId);
+
+		if (autoSignUser.getToken().equals(cookie.getValue())) {
+			return autoSignUser;
 		}
-		
 		return null;
-	}
-	
-	private HashMap<String,String> convertToStringToHashMap(String text){
-		HashMap<String,String> data = new HashMap<String,String>();
-		Pattern p = Pattern.compile("[\\{\\}\\=\\, ]++");
-		String[] split = p.split(text);
-		
-		for ( int i=1; i+2 <= split.length; i+=2 ){
-			data.put( split[i], split[i+1] );
-		}
-		return data;
 	}
 }

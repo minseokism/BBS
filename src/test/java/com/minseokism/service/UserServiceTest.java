@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.minseokism.App;
-import com.minseokism.domain.Token;
 import com.minseokism.domain.User;
 import com.minseokism.repository.UserRepository;
 
@@ -70,34 +69,5 @@ public class UserServiceTest {
 		
 		Assert.assertEquals(true, test);
 	}*/
-	
-	@Test
-	public void duplexJoinTest() {
-		User tempUser = new User();
-		tempUser.setEmail("ediya3@naver.com");
-		tempUser.setId("ediya_us3");
-		tempUser.setName("이디야");
-		tempUser.setPwd("Asdsadsad");
-		
-		Token token1 = new Token();
-		token1.setToken("hi");
-		token1.setTokenId("bye");
-		token1.setUser(tempUser);
-		
-		Token token2 = new Token("hi2","bye2",tempUser);
-		
-		Token token3 = new Token();
-		token3.setToken("hi3");
-		token3.setTokenId("bye3");
-		token3.setUser(tempUser);
-		
-		tempUser.addToken(token1);
-		tempUser.addToken(token2);
-		tempUser.getTokens().add(token3);
-		
-		
-		userRepository.save(tempUser);
-		
-	}
 	
 }

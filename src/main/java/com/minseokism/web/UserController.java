@@ -1,6 +1,5 @@
 package com.minseokism.web;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.minseokism.service.EncryptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,10 @@ import com.minseokism.service.UserService.state;
 @RequestMapping("users")
 public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	
+
 	@Autowired
 	UserService userService;
+	EncryptionService encryptionService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	String list(Model model) {
@@ -90,17 +91,18 @@ public class UserController {
 			
 		} else if (state.autoSignIn.ordinal() == stateCode){
 			log.info("[signin success : autoSignIn !] ------------ ");
-			HashMap<String, String> userMap = new HashMap<String, String>();
-			userMap.put("id", signInUser.getId());
-			userMap.put("token", signInUser.getToken());
-			
-			Cookie autoSignInCookie = new Cookie("asiu", userMap.toString());  				
+			Cookie autoSignInCookie = new Cookie("autoSignInCookie", signInUser.getToken());
+
 			autoSignInCookie.setPath("/");
 			autoSignInCookie.setMaxAge(200*24*60*60);
-			res.addCookie(autoSignInCookie);		
-			return "redirect:/"; 
+			res.addCookie(autoSignInCookie);
+
+			session.setAttribute("signInUser", signInUser);
+			session.setMaxInactiveInterval(60*60);
+
+			return "redirect:/";
 		
-		} else if (state.uncorrectPwd.ordinal() == stateCode){
+		} else if (state.incorrectPwd.ordinal() == stateCode){
 			log.info("[signin failure : uncorrect password !] ------------ ");
 			model.addAttribute("state", stateCode);
 			model.addAttribute("tryId", tryId);
@@ -142,7 +144,7 @@ public class UserController {
 		User updateUser = userService.signIn(user, "off");
 		int stateCode = updateUser.getState();
 		
-		if (state.uncorrectPwd.ordinal() == stateCode) {
+		if (state.incorrectPwd.ordinal() == stateCode) {
 			model.addAttribute("error", "error");
 			return "users/updateGate";
 		} else{
