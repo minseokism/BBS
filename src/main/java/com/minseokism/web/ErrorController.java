@@ -19,7 +19,7 @@ public class ErrorController{
 	@Autowired
 	private ErrorService errorService;
 	     
-	@RequestMapping(value="/errors",method=RequestMethod.GET)
+	@RequestMapping(value="/error",method=RequestMethod.GET)
 	public String renderErrorPage(final Model model, final HttpServletRequest request){
 	    log.info("[error handling !] ------------");
 	    

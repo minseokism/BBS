@@ -10,8 +10,9 @@ import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 
 @Configuration
 public class AppConfig {
-	private static final String PATH = "/errors";
+	private static final String PATH = "/error";
 	
+	//Error 
 	@Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
 		return (container -> {
@@ -20,6 +21,7 @@ public class AppConfig {
 		});
 	}	
 	
+	//xss
 	@Bean
     public FilterRegistrationBean xssEscapeServletFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
