@@ -21,4 +21,8 @@ spring:
    properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-      
+   devtools:
+      liverelaod:
+        enabled: true
+   freemarker:
+      cache: false
