@@ -148,7 +148,8 @@ public class UserController {
 			model.addAttribute("error", "error");
 			return "users/updateGate";
 		} else{
-			return "redirect:/";
+			model.addAttribute("updateUser",updateUser);
+			return "users/updateForm";
 		}
 	}
 	
