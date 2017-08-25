@@ -29,7 +29,6 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	EncryptionService encryptionService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	String list(Model model) {
@@ -132,14 +131,14 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
 	String updateForm() {
 		log.info("[updateGate page !] ------------ ");
 		return "users/updateGate";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	String update(User user, Model model) {
+	@RequestMapping(value = "updateForm", method = RequestMethod.POST)
+	String updateForm(User user, Model model) {
 		log.info("[updateGate signin !] ------------ ");
 		User updateUser = userService.signIn(user, "off");
 		int stateCode = updateUser.getState();
@@ -155,7 +154,14 @@ public class UserController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	String delete() {
-		return "redirect:/main";
+		return "redirect:/";
 	}
-	
+
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	String update(User user) {
+		log.info("[update submit !] ------------ ");
+		userService.update(user);
+		return "redirect:/";
+	}
 }

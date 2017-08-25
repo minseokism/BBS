@@ -22,7 +22,7 @@
        	 <li><a href="/users/signup">Sign Up</a></li>
        	 <li><a href="/users/signin">Sign In</a></li>
 		<#else>
-         <li><a href="/users/update">My Account</a></li>
+         <li><a href="/users/updateForm">My Account</a></li>
          <li><a href="/users/signout"><Strong>Sign Out (${id})</Strong></a></li>
 		</#if>
        
