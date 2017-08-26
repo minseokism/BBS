@@ -1,20 +1,24 @@
-.form-margin{
+.form-margin {
 	margin-bottom: 5px;
 }
 
-.form-margin-top{
+.form-margin-top {
 	margin-top: 5px;
 }
 
-#pwd_confirmation{
+#pwd_confirmation {
 	margin-top: 10px;
 }
 
-.errormsg{
-	color:red;
+.errormsg {
+	color: red;
 	font-size: small;
 }
 
-.gr{
-	color:blue;
+.gr {
+	color: blue;
+}
+
+#currentPwd {
+	padding-top: 0px;
 }

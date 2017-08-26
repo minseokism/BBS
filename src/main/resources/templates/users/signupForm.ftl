@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Sign up</title>
 	<link rel="stylesheet"
-	href="/css/bootstrap.min.css"/>
+		  href="/css/bootstrap.min.css"/>
 	<link rel="stylesheet"
-	href="/css/users.css"/>
+		  href="/css/users.css"/>
 </head>	
 <body>
 <#include "../header.ftl">
@@ -58,7 +58,7 @@
 	    
 	    <div class="form-group">
 	      <div class="col-lg-8 col-lg-offset-2">
-	        <button type="reset" class="btn btn-default" onclick="resetForm(event)">Cancel</button>
+	        <button type="reset" class="btn btn-default" onclick="resetForm(event)">Reset</button>
 	        <button type="button" id="submit" class="btn btn-primary" onclick="checkSubmit(event)">Submit</button>
 	      </div>
 	    </div>
