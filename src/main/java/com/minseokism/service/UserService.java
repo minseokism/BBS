@@ -28,8 +28,8 @@ public class UserService{
 		return userRepository.findAll();
 	}
 	
-	public User findOne(Integer id) {
-		return userRepository.findOne(id);
+	public User findById(String id) {
+		return userRepository.findById(id);
 	}
 	
 	public User create(User user) {
@@ -80,7 +80,17 @@ public class UserService{
 	public boolean checkEmail(String email){
 		return userRepository.existsByEmail(email);
 	}
-	
+
+	public boolean checkEmail(String email, String id) {
+		User user = userRepository.findByEmail(email);
+
+		if (user != null && !(user.getId().equals(id))) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean pwdRegexp(String pwd) {
 		String regexp ="[A-Za-z0-9!@#$%^&*_\\(\\)\\{\\}\\[\\]~`+=-]{6,20}$";
 		return pwd.matches(regexp);

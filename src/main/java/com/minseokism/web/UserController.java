@@ -43,15 +43,28 @@ public class UserController {
 		log.info("[validation check !] ------------");
 		
 		if(!id.equals("unknown")) {
-			log.info("[id exist? ]= "+userService.checkId(id));
+			log.info("[id exist? ]");
 			return userService.checkId(id);
 		} 
 		
 		if(!email.equals("unknown")) {
-			log.info("[email exist? ]= "+userService.checkEmail(email));
+			log.info("[email exist? ]");
 			return userService.checkEmail(email);
 		}
 		
+		return false;
+	}
+
+	@RequestMapping(value ="checkInUpdate", method = RequestMethod.POST)
+	@ResponseBody boolean checkInUpdate(String id,
+								@RequestParam(value = "email", defaultValue ="unknown") String email) {
+		log.info("[validation check in update !] ------------");
+
+		if(!email.equals("unknown")) {
+			log.info("[email exist? ]");
+			return userService.checkEmail(email, id);
+		}
+
 		return false;
 	}
 	
@@ -132,14 +145,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
-	String updateForm() {
-		log.info("[updateGate page !] ------------ ");
+	String updateFormGate() {
+		log.info("[updateFormGate page !] ------------ ");
 		return "users/updateGate";
 	}
-	
+
 	@RequestMapping(value = "updateForm", method = RequestMethod.POST)
 	String updateForm(User user, Model model) {
-		log.info("[updateGate signin !] ------------ ");
+		log.info("[updateForm signin !] ------------ ");
 		User updateUser = userService.signIn(user, "off");
 		int stateCode = updateUser.getState();
 		
@@ -156,7 +169,6 @@ public class UserController {
 	String delete() {
 		return "redirect:/";
 	}
-
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	String update(User user) {
