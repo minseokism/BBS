@@ -18,8 +18,10 @@
             <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Id</label>
                 <div class="col-lg-8">
-                    <input type="hidden" class="form-control form-margin" name="id" id="id" value="${updateUser.id}"/>
-                    <span class="form-margin form-margin-top">${updateUser.id}</span>
+                    <div style="padding-top: 8px;">
+                        <strong>${updateUser.id}</strong>
+                    </div>
+                    <input type="hidden" name="id" id="id" value="${updateUser.id}"/>
                 </div>
             </div>
 
@@ -43,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <label for="currentpwd" class="col-lg-2 control-label">Current Password</label>
+                <label for="currentPwd" class="col-lg-2 control-label" id="currentPwd">Current Password</label>
                 <div class="col-lg-8">
                     <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="40"
                            onblur="checkPwd1('check');" onkeypress="checkCapslk(event);"
@@ -53,7 +55,7 @@
             </div>
 
             <div class="form-group">
-                <label for="pwd" class="col-lg-2 control-label">New Password</label>
+                <label for="pwd" class="col-lg-2 control-label label-padding-top-zero">New Password</label>
                 <div class="col-lg-8">
                     <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="40"
                            onblur="checkPwd1('check');" onkeypress="checkCapslk(event);"
@@ -68,7 +70,6 @@
 
             <div class="form-group">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <button type="reset" class="btn btn-default" onclick="resetForm(event)">Cancel</button>
                     <button type="button" id="submit" class="btn btn-primary" onclick="checkSubmit(event)">Update</button>
                 </div>
             </div>
