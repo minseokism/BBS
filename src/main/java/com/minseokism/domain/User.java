@@ -24,11 +24,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-	@Id
 	@GeneratedValue
 	@Column(name = "user_no")
 	private Integer no;
 
+	@Id
 	@Pattern(regexp = "^[a-z0-9][a-z0-9_-]{4,29}$")
 	@Column(nullable = false)
 	private String id;
