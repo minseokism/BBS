@@ -1,6 +1,7 @@
 // 제출할때 모두 true일때만 회원가입 가능
 var idFlag = false;
 var pwdFlag = false;
+var pwdFlag2 = false;
 var nameFlag = false;
 var emailFlag = false;
 
@@ -287,7 +288,8 @@ function checkPwd2(event){
 	var pwd1 = document.getElementById("pwd").value;
 	var pwd2 = document.getElementById("pwd2").value;
 	var pwdMsg2 = document.getElementById("pwdMsg2");
-	
+	pwdFlag2 = false;
+
 	if (pwd2 === "") {
 		pwdMsg2.className = "errormsg";
 		pwdMsg2.style.display = "block";
@@ -305,6 +307,7 @@ function checkPwd2(event){
 		pwdMsg2.className = "errormsg gr";
 		pwdMsg2.style.display = "block";
 		pwdMsg2.innerHTML = "일치합니다."
+		pwdFlag2 = true;
 		return true;
 	}
 
@@ -334,6 +337,11 @@ function checkSubmit(event){
 		document.getElementById("pwd1").focus();
 		return false;
 	}
+
+    if (!pwdFlag2) {
+        document.getElementById("pwd2").focus();
+        return false;
+    }
 	
 	submit.type = "submit";
 	return true;
