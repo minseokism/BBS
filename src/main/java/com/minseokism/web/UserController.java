@@ -57,14 +57,19 @@ public class UserController {
 
 	@RequestMapping(value ="checkInUpdate", method = RequestMethod.POST)
 	@ResponseBody boolean checkInUpdate(String id,
-								@RequestParam(value = "email", defaultValue ="unknown") String email) {
+								@RequestParam(value = "email", defaultValue ="unknown") String email,
+										@RequestParam(value ="pwd", defaultValue = "unknown") String pwd) {
 		log.info("[validation check in update !] ------------");
 
-		if(!email.equals("unknown")) {
+		if (!email.equals("unknown")) {
 			log.info("[email exist? ]");
 			return userService.checkEmail(email, id);
 		}
 
+		if (!pwd.equals("unknown")) {
+			log.info("[pwd check !]");
+			return userService.checkPwd(pwd, id);
+		}
 		return false;
 	}
 	
@@ -171,9 +176,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	String update(User user) {
+	String update(User user, @RequestParam(value="currentPwd") String currentPwd) {
 		log.info("[update submit !] ------------ ");
-		userService.update(user);
+
+		if(user.getPwd().isEmpty() || user.getPwd().equals("")) {
+			user.setPwd(currentPwd);
+		}
+
+		userService.update(user, currentPwd);
 		return "redirect:/";
 	}
 }

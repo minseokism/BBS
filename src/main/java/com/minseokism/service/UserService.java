@@ -36,9 +36,9 @@ public class UserService{
 		if (pwdRegexp(user.getPwd())) {
 			user.setPwd(pwdEncryption(user.getPwd()));
 			return userRepository.save(user);
-		} else {
-			return null;
-		}		
+		}
+
+		return null;
 	}
 	
 	public User signIn(User user, String autoSignIn) {
@@ -65,8 +65,14 @@ public class UserService{
 		return signInUser;
 	}
 	
-	public User update(User user) {
-		return userRepository.save(user);
+	public User update(User user, String currentPwd) {
+		if (checkPwd(currentPwd, user.getId())) {
+			user.setNo(userRepository.findById(user.getId()).getNo());
+			user.setPwd(pwdEncryption(user.getPwd()));
+			return userRepository.save(user);
+		}
+
+		return null;
 	}
 	
 	public void delete(Integer id) {
@@ -89,6 +95,11 @@ public class UserService{
 		}
 
 		return false;
+	}
+
+	public boolean checkPwd(String pwd, String id) {
+		User user = userRepository.findById(id);
+		return BCrypt.checkpw(pwd, user.getPwd());
 	}
 
 	public boolean pwdRegexp(String pwd) {
