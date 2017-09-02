@@ -11,7 +11,7 @@
 <body>
 <#include "../header.ftl">
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-    <form class="form-horizontal" method="post" action="/users/signup">
+    <form id="updateForm" class="form-horizontal" method="post" action="/users/update">
         <fieldset>
             <legend>My Account</legend>
 
@@ -45,26 +45,26 @@
             </div>
 
             <div class="form-group">
-                <label for="currentPwd" class="col-lg-2 control-label" id="currentPwd">Current Password</label>
+                <label for="currentPwd" class="col-lg-2 control-label" id="currentPwdLabel">Current Password</label>
                 <div class="col-lg-8">
-                    <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="40"
-                           onblur="checkPwd1('check');" onkeypress="checkCapslk(event);"
+                    <input type="password" class="form-control form-margin" name="currentPwd" id="currentPwd" placeholder="Current Password" maxlength="40"
+                           onblur="checkCurrentPwd('check');" onkeypress="checkCapslk(event, 'currentPwdMsg');"
                            onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">
-                    <span class="errormsg" id="pwdMsg1" style="display:none">필수 정보입니다.</span>
+                    <span class="errormsg" id="currentPwdMsg" style="display:none">회원정보 수정을 위한 필수 정보입니다.</span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="pwd" class="col-lg-2 control-label label-padding-top-zero">New Password</label>
                 <div class="col-lg-8">
-                    <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="40"
-                           onblur="checkPwd1('check');" onkeypress="checkCapslk(event);"
+                    <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Change Password" maxlength="40"
+                           onblur="checkPwd1('check');" onkeypress="checkCapslk(event, 'pwdMsg1');"
                            onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">
-                    <span class="errormsg" id="pwdMsg1" style="display:none">필수 정보입니다.</span>
+                    <span class="errormsg" id="pwdMsg1" style="display:none"></span>
                     <input type="password" class="form-control form-margin form-margin-top" name="pwd2" id="pwd2" maxlength="20"
-                           placeholder="Confirm Password" onblur="checkPwd2(event)" onkeypress="checkCapslk2(event)"
+                           placeholder="Confirm Password" onblur="checkPwd2(event)" onkeypress="checkCapslk(event, 'pwdMsg2')"
                            onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">
-                    <span class="errormsg" id="pwdMsg2" style="display:none">필수 정보입니다.</span>
+                    <span class="errormsg" id="pwdMsg2" style="display:none"></span>
                 </div>
             </div>
 
