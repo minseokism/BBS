@@ -24,6 +24,11 @@ public class HomeController {
     @RequestMapping("/")
     String index(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
         log.info("[main !] ------------ ");
+
+        if (session.getAttribute("signInUser") != null) {
+            return "/main";
+        }
+
         User autoSignInUser = null;
 
         if (req.getCookies() != null) {
