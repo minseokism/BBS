@@ -140,9 +140,10 @@ public class UserService{
 
 		User autoSignUser = userRepository.findById(decId);
 
-		if (autoSignUser.getToken().equals(cookie.getValue())) {
+		if (autoSignUser != null && autoSignUser.getToken().equals(cookie.getValue())) {
 			return autoSignUser;
 		}
+
 		return null;
 	}
 }
