@@ -11,13 +11,14 @@
 <body>
 <#include "../header.ftl">
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <div class="well bs-component">
     <form id="updateForm" class="form-horizontal" method="post" action="/users/update">
         <fieldset>
             <legend>My Account</legend>
 
             <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Id</label>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <div style="padding-top: 8px;">
                         <strong>${updateUser.id}</strong>
                     </div>
@@ -28,7 +29,7 @@
 
             <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">Name</label>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <input type="text" class="form-control form-margin" name="name" id="name" placeholder="Name" maxlength="20"
                            onblur="checkName('check')" value="${updateUser.name}">
                     <span class="errormsg" id="nameMsg" style="display:none">필수 정보입니다.</span>
@@ -37,7 +38,7 @@
 
             <div class="form-group">
                 <label for="email" class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <input type="email" class="form-control form-margin" name="email" id="email" placeholder="Email" maxlength="40"
                            onblur="checkEmail('check')" value="${updateUser.email}">
                     <span class="errormsg" id="emailMsg" style="display:none">필수 정보입니다.</span>
@@ -46,7 +47,7 @@
 
             <div class="form-group">
                 <label for="currentPwd" class="col-lg-2 control-label" id="currentPwdLabel">Current Password</label>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <input type="password" class="form-control form-margin" name="currentPwd" id="currentPwd" placeholder="Current Password" maxlength="40"
                            onblur="checkCurrentPwd('check');" onkeypress="checkCapslk(event, 'currentPwdMsg');"
                            onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">
@@ -56,7 +57,7 @@
 
             <div class="form-group">
                 <label for="pwd" class="col-lg-2 control-label label-padding-top-zero">New Password</label>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Change Password" maxlength="40"
                            onblur="checkPwd1('check');" onkeypress="checkCapslk(event, 'pwdMsg1');"
                            onkeyup="checkShiftUp(event);" onKeydown="checkShiftDown(event);">
@@ -69,12 +70,13 @@
             </div>
 
             <div class="form-group">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-9 col-lg-offset-2">
                     <button type="button" id="submit" class="btn btn-primary" onclick="checkSubmit(event)">Update</button>
                 </div>
             </div>
         </fieldset>
     </form>
+    </div>
 </div>
 <#include "../footer.ftl">
 <script src="/js/update.js"></script>

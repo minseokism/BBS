@@ -11,13 +11,14 @@
 <body>
 <#include "../header.ftl">
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+	<div class="well bs-component">
 	<form class="form-horizontal" method="post" action="/users/signin">
 	 <fieldset>
 		    <legend>Sign In</legend>
 		    
 	  	 	<div class="form-group">
 		      <label for="id" class="col-lg-2 control-label">ID</label>
-		      <div class="col-lg-8">
+		      <div class="col-lg-9">
 		        <input type="text" class="form-control" name="id" id="id" placeholder="ID" 
 		        	maxlength="30" value="${tryId?if_exists}">
 		      </div>	      
@@ -25,7 +26,7 @@
 	 
 		    <div class="form-group">
 		      <label for="pwd" class="col-lg-2 control-label">Password</label>
-		      <div class="col-lg-8">
+		      <div class="col-lg-9">
 		        <input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" 
 		        	maxlength="20">
 	        	<div class="checkbox">
@@ -37,7 +38,7 @@
 		    </div>
 		        	   
     	    <div class="form-group">
-		      <div class="col-lg-8 col-lg-offset-2">
+		      <div class="col-lg-9 col-lg-offset-2">
 		        <button type="button" id="submit" onclick="checkSubmit(event)" class="btn btn-primary">Sign In</button>
 		      </div>
 		    </div>
@@ -57,6 +58,7 @@
 		   
    	 </fieldset>
 	</form>
+    </div>
 </div>
 <#include "../footer.ftl">
 <script src="/js/signin.js"></script>

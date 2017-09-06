@@ -12,6 +12,7 @@
 <#include "../header.ftl">
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 	<form class="form-horizontal" method="post" action="/users/updateForm">
+        <div class="well bs-component">
 		<fieldset>
 			<legend>My Account</legend>
 
@@ -19,7 +20,7 @@
 
 			<div class="form-group">
 				<label for="pwd" class="col-lg-2 control-label">Password</label>
-				<div class="col-lg-8">
+				<div class="col-lg-9">
 					<input type="password" class="form-control form-margin" name="pwd" id="pwd" placeholder="Password" maxlength="20">
 				</div>
 			</div>
@@ -41,6 +42,8 @@
 			</#if>
    	   </fieldset>
 	</form>
+</div>
+</div>
 <#include "../footer.ftl">
 <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
 <script src="/js/updateGate.js"></script>
