@@ -75,8 +75,11 @@ public class UserService{
 		return null;
 	}
 	
-	public void delete(Integer id) {
-		userRepository.delete(id);
+	public boolean delete(String id) {
+		if (findById(id) != null) {
+			return userRepository.deleteByUser(findById(id));
+		}
+		return false;
 	}
 	
 	public boolean checkId(String id){
