@@ -76,8 +76,10 @@ public class UserService{
 	}
 	
 	public boolean delete(String id) {
-		if (findById(id) != null) {
-			return userRepository.deleteByUser(findById(id));
+		userRepository.delete(userRepository.findById(id));
+
+		if (userRepository.findById(id) == null) {
+			return true;
 		}
 		return false;
 	}
