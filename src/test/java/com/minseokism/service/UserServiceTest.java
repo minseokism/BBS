@@ -69,5 +69,20 @@ public class UserServiceTest {
 		
 		Assert.assertEquals(true, test);
 	}*/
-	
+
+
+	@Test
+	public void 회원탈퇴테스트() {
+		user = new User();
+		user.setId("bbasse1");
+		user.setPwd("bbasse1");
+		user.setEmail("bbasse1@naver.com");
+		user.setName("빠새");
+
+		userRepository.save(user);
+		Assert.assertEquals(true, userRepository.existsById("bbasse1"));
+
+		userRepository.delete(userRepository.findById("bbasse1"));
+		Assert.assertEquals(false, userRepository.existsById("bbasse1"));
+	}
 }
