@@ -22,16 +22,12 @@ public class UserService{
 
 	private final String ENCRYPTIONID = "ToBeOrNotToBe";
 
-	public enum state{notExist, incorrectPwd, signIn, autoSignIn};
+	public enum state { notExist, incorrectPwd, signIn, autoSignIn }
 	
-	public List<User> findAll() {
-		return userRepository.findAll();
-	}
+	public List<User> findAll() { return userRepository.findAll(); }
 	
-	public User findById(String id) {
-		return userRepository.findById(id);
-	}
-	
+	public User findById(String id) { return userRepository.findById(id); }
+
 	public User create(User user) {
 		if (pwdRegexp(user.getPwd())) {
 			user.setPwd(pwdEncryption(user.getPwd()));
@@ -77,20 +73,13 @@ public class UserService{
 	
 	public boolean delete(String id) {
 		userRepository.delete(userRepository.findById(id));
-
-		if (userRepository.findById(id) == null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean checkId(String id){
 		return userRepository.existsById(id);
+
 	}
 	
-	public boolean checkEmail(String email){
-		return userRepository.existsByEmail(email);
-	}
+	public boolean checkId(String id){ return userRepository.existsById(id); }
+	
+	public boolean checkEmail(String email){ return userRepository.existsByEmail(email); }
 
 	public boolean checkEmail(String email, String id) {
 		User user = userRepository.findByEmail(email);
@@ -112,10 +101,8 @@ public class UserService{
 		return pwd.matches(regexp);
 	}
 	
-	private String pwdEncryption(String pwd) {
-		return BCrypt.hashpw(pwd, BCrypt.gensalt(10, new SecureRandom()));
-	}
-	
+	private String pwdEncryption(String pwd) { return BCrypt.hashpw(pwd, BCrypt.gensalt(10, new SecureRandom())); }
+
 	private String createToken(User user) {
 		String encId = "";
 		try {

@@ -22,3 +22,7 @@
 #currentPwdLabel {
 	padding-top: 0px;
 }
+
+#deletelink {
+	float: right;
+}

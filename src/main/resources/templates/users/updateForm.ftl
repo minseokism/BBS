@@ -77,6 +77,7 @@
         </fieldset>
     </form>
     </div>
+    <div id="deletelink"><a href="/users/delete">회원탈퇴</a></div>
 </div>
 <#include "../footer.ftl">
 <script src="/js/update.js"></script>

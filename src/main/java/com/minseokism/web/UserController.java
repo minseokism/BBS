@@ -172,10 +172,17 @@ public class UserController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	String delete(@RequestParam(value = "id", defaultValue = "unknown") String id) {
+		log.info("[delete User !] ------------ ");
 		if (userService.delete(id)) {
 			return "users/delete_success";
 		}
 		return "users/delete_failed";
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	String delete() {
+		log.info("[deleteForm !] ------------ ");
+		return "users/deleteForm";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
