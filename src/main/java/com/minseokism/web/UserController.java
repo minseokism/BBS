@@ -171,12 +171,26 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	String delete(@RequestParam(value = "id", defaultValue = "unknown") String id) {
+	String delete(@RequestParam(value = "id", defaultValue = "unknown") String id,
+				  @RequestParam(value = "pwd", defaultValue = "unknown") String pwd, Model model, HttpSession session,
+				  HttpServletRequest req, HttpServletResponse res) {
 		log.info("[delete User !] ------------ ");
-		if (userService.delete(id)) {
-			return "users/delete_success";
+
+		if (!userService.delete(id, pwd)) {
+			model.addAttribute("error", "error");
+			return "users/deleteForm";
 		}
-		return "users/delete_failed";
+
+		session.invalidate();
+
+		Cookie[] cookies = req.getCookies();
+		for (int i = 0 ; i<cookies.length; i++){
+			cookies[i].setMaxAge(0);
+			cookies[i].setPath("/");
+			res.addCookie(cookies[i]);
+		}
+
+		return "users/delete_success";
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)

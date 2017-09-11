@@ -71,9 +71,13 @@ public class UserService{
 		return null;
 	}
 	
-	public boolean delete(String id) {
-		userRepository.delete(userRepository.findById(id));
-		return userRepository.existsById(id);
+	public boolean delete(String id, String pwd) {
+		User user = userRepository.findById(id);
+		if (user == null) return false;
+		else if (!BCrypt.checkpw(pwd,user.getPwd())) return false;
+
+		userRepository.delete(user);
+		return !userRepository.existsById(id);
 
 	}
 	

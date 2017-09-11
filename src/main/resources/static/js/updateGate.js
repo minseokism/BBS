@@ -10,5 +10,6 @@ function checkSubmit(event){
     }
 
     submit.type = "submit";
+
     return true;
 }
