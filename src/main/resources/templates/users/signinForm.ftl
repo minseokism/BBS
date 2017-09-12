@@ -10,6 +10,9 @@
 </head>	
 <body>
 <#include "../header.ftl">
+<#include "../signinCheck.ftl">
+
+
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 	<div class="well bs-component">
 	<form class="form-horizontal" method="post" action="/users/signin">
