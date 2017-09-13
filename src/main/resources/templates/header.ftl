@@ -11,7 +11,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">게시판1<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">게시판1<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">게시판2</a></li>
                 <li><a href="#">게시판3</a></li>
                 <li><a href="#">게시판4</a></li>
