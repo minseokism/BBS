@@ -17,4 +17,9 @@ public class PostController {
 	String list(){
 		return "";
 	}
+
+	@RequestMapping("board")
+	String board1() {
+		return "posts/board";
+	}
 }

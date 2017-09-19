@@ -21,8 +21,11 @@ public class Post {
 	@Id
 	@GeneratedValue
 	@Column(name = "post_no")
-	private Integer no;
-	
+	private int no;
+
+	@Column(nullable = false)
+	private String category;
+
 	@Column(nullable = false)
 	private String subject;
 	
@@ -34,5 +37,7 @@ public class Post {
 	
 	@Column(nullable = false)
 	private Date modDate;
+
+	private int hits;
 
 }
