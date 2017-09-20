@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	@GeneratedValue
 	@Column(name = "user_no")
-	private Integer no;
+	private int no;
 
 	@Id
 	@Pattern(regexp = "^[a-z0-9][a-z0-9_-]{4,29}$")
@@ -49,11 +49,11 @@ public class User {
 	@Transient
 	private int state;
 
-	public Integer getNo() {
+	public int getNo() {
 		return no;
 	}
 
-	public void setNo(Integer no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 
