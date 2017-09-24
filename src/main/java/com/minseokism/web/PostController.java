@@ -22,4 +22,9 @@ public class PostController {
 	String board1() {
 		return "posts/board";
 	}
+
+	@RequestMapping("writeForm")
+	String writeForm() {
+		return "posts/writeForm";
+	}
 }
