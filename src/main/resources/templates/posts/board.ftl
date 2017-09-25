@@ -118,7 +118,7 @@
         </tbody>
     </table>
     <hr/>
-    <a class="btn btn-default pull-right">글쓰기</a>
+    <a class="btn btn-default pull-right" href="/posts/writeForm">글쓰기</a>
     <div class="text-center">
         <ul class="pagination">
             <li><a href="#"><</a></li>
@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+<#include "../footer.ftl">
 <script src="/js/post.js"></script>
 </body>
 </html>

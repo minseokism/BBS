@@ -13,7 +13,6 @@
     	<h2>회원가입 성공!</h2>
     	3초후에 메인페이지로 이동
 	</div>
-
 <#include "../footer.ftl">
 </body>
 </html>

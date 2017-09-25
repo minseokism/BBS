@@ -47,7 +47,6 @@
 </div>
 </div>
 <#include "../footer.ftl">
-<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
 <script src="/js/updateGate.js"></script>
 </body>
 </html>
