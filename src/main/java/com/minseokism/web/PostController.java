@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.minseokism.service.PostService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("posts")
@@ -26,5 +27,10 @@ public class PostController {
 	@RequestMapping("writeForm")
 	String writeForm() {
 		return "posts/writeForm";
+	}
+
+	@RequestMapping("write")
+	String write(@RequestParam(value = "content", defaultValue = "unknown") String content) {
+		return "/";
 	}
 }

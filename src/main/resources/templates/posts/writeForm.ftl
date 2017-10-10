@@ -11,14 +11,14 @@
 <body>
 <#include "../header.ftl">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form>
+        <form class="form-horizontal" method="post" action="/posts/write">
             <input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해주세요">
 
             <textarea name="content" id="summernote" value=""></textarea>
 
             <div class="form-button-group">
                 <button type="reset" class="btn btn-default" onclick="resetForm(event)">Reset</button>
-                <button type="button" id="submit" class="btn btn-primary" onclick="checkSubmit(event)">Write</button>
+                <button type="submit" id="submit" class="btn btn-primary">Write</button>
             </div>
         </form>
     </div>
