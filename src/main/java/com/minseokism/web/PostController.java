@@ -1,5 +1,6 @@
 package com.minseokism.web;
 
+import com.minseokism.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,8 @@ public class PostController {
 	}
 
 	@RequestMapping("write")
-	String write(@RequestParam(value = "content", defaultValue = "unknown") String content) {
+	String write(Post post) {
+		System.out.println(post.getContent() + "   " + post.getSubject() + post.getSubject());
 		return "/";
 	}
 }

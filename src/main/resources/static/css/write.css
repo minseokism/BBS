@@ -5,3 +5,11 @@
 .form-button-group {
     text-align: center;
 }
+input[type=text]{
+    font-weight: bold;
+}
+
+input[type=text]:-ms-input-placeholder { color: rgb(191, 191, 191);  font-weight: bold}
+input[type=text]::-webkit-input-placeholder { color: rgb(191, 191, 191);  font-weight: bold}
+input[type=text]::-moz-placeholder { color: rgb(191, 191, 191);  font-weight: bold}
+input[type=text]::-moz-placeholder { color: rgb(191, 191, 191);  font-weight: bold}

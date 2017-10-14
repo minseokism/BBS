@@ -14,13 +14,13 @@
         <form class="form-horizontal" method="post" action="/posts/write">
             <input type="text" class="form-control form-margin-bottom" name="subject" id="subject" placeholder="제목을 입력해주세요">
 
-            <select class="form-control form-margin-bottom" id="select">
-                <option>카테고리 선택</option>
-                <option>스포츠</option>
-                <option>게임</option>
-                <option>방송</option>
-                <option>정치</option>
-                <option>뻘글</option>
+            <select class="form-control form-margin-bottom" id="category">
+                <option value="0">카테고리 선택</option>
+                <option value="1">스포츠</option>
+                <option value="2">게임</option>
+                <option value="3">방송</option>
+                <option value="4">정치</option>
+                <option value="5">뻘글</option>
             </select>
 
             <textarea name="content" id="summernote" value=""></textarea>

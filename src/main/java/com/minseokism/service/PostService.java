@@ -32,4 +32,11 @@ public class PostService{
 	public void delete(Integer id) {
 		postRepository.delete(id);
 	}
+
+	public boolean write(Post post) {
+		
+		if (postRepository.save(post) != null) return true;
+		return false;
+	}
+
 }
