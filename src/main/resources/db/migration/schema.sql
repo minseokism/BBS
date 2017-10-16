@@ -10,30 +10,31 @@ DROP TABLE USER;
 		PWD     VARCHAR(100) NOT NULL, -- 비밀번호
 		EMAIL   VARCHAR(100) UNIQUE NOT NULL, -- 이메일
 		NAME    VARCHAR(50)  NOT NULL,  -- 이름
-    TOKEN   VARCHAR(100) NULL,
-		STATE	INTEGER
+    TOKEN   VARCHAR(100) NULL, -- 토큰
+		STATE	  INTEGER NULL -- 상태
 	);
 				
-	-- 게시판
+	-- 게시글
 	CREATE TABLE POST (
 		POST_NO  INTEGER      NOT NULL, -- 게시글번호
 		SUBJECT  VARCHAR(300) NOT NULL, -- 제목
 		CONTENT  TEXT         NOT NULL, -- 내용
 		REG_DATE DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    NOT NULL, -- 등록일자
 		MOD_DATE DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    NOT NULL, -- 수정일자
-		USER_NO  INTEGER      NOT NULL  -- 회원번호
+		USER_NO  INTEGER      NOT NULL,  -- 회원번호
+		HITS 		 INTEGER NULL -- 조회수
 	);
 	
-	-- 게시판 기본키
+	-- 게시글 기본키
 	CREATE UNIQUE INDEX PK_POST
-		ON POST ( -- 게시판
+		ON POST ( -- 게시글
 			POST_NO ASC -- 게시글번호
 		);
 	
-	-- 게시판
+	-- 게시글
 	ALTER TABLE POST
 		ADD
-			CONSTRAINT PK_POST -- 게시판 기본키
+			CONSTRAINT PK_POST -- 게시글 기본키
 			PRIMARY KEY (
 				POST_NO -- 게시글번호
 			);
@@ -83,10 +84,10 @@ DROP TABLE USER;
 				PHOTO_NO -- 사진번호
 			);
 	
-	-- 게시판
+	-- 게시글
 	ALTER TABLE POST
 		ADD
-			CONSTRAINT FK_USER_TO_POST -- 사용자 -> 게시판
+			CONSTRAINT FK_USER_TO_POST -- 사용자 -> 게시글
 			FOREIGN KEY (
 				USER_NO -- 회원번호
 			)
@@ -97,11 +98,11 @@ DROP TABLE USER;
 	-- 코멘트
 	ALTER TABLE COMMENT
 		ADD
-			CONSTRAINT FK_POST_TO_COMMENT -- 게시판 -> 코멘트
+			CONSTRAINT FK_POST_TO_COMMENT -- 게시글 -> 코멘트
 			FOREIGN KEY (
 				POST_NO -- 게시글번호
 			)
-			REFERENCES POST ( -- 게시판
+			REFERENCES POST ( -- 게시글
 				POST_NO -- 게시글번호
 			);
 	
@@ -119,10 +120,10 @@ DROP TABLE USER;
 	-- 첨부사진
 	ALTER TABLE PHOTO
 		ADD
-			CONSTRAINT FK_POST_TO_PHOTO -- 게시판 -> 첨부사진
+			CONSTRAINT FK_POST_TO_PHOTO -- 게시글 -> 첨부사진
 			FOREIGN KEY (
 				POST_NO -- 게시글번호
 			)
-			REFERENCES POST ( -- 게시판
+			REFERENCES POST ( -- 게시글
 				POST_NO -- 게시글번호
 			);
