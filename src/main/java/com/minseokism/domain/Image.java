@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Photo {
+public class Image {
 	@Id
 	@GeneratedValue
 	@Column(name = "photo_no")

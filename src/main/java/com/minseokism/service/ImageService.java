@@ -8,32 +8,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.minseokism.domain.Photo;
-import com.minseokism.repository.PhotoRepository;
+import com.minseokism.domain.Image;
+import com.minseokism.repository.ImageRepository;
 
 @Service
-public class PhotoService implements PhotoRepository {
+public class ImageService implements ImageRepository {
 
 	@Override
-	public List<Photo> findAll() {
+	public List<Image> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Photo> findAll(Sort sort) {
+	public List<Image> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Photo> findAll(Iterable<Integer> ids) {
+	public List<Image> findAll(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> List<S> save(Iterable<S> entities) {
+	public <S extends Image> List<S> save(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,13 +45,13 @@ public class PhotoService implements PhotoRepository {
 	}
 
 	@Override
-	public <S extends Photo> S saveAndFlush(S entity) {
+	public <S extends Image> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<Photo> entities) {
+	public void deleteInBatch(Iterable<Image> entities) {
 		// TODO Auto-generated method stub
 
 	}
@@ -63,25 +63,25 @@ public class PhotoService implements PhotoRepository {
 	}
 
 	@Override
-	public Photo getOne(Integer id) {
+	public Image getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Photo> findAll(Pageable pageable) {
+	public Page<Image> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> S save(S entity) {
+	public <S extends Image> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Photo findOne(Integer id) {
+	public Image findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -105,13 +105,13 @@ public class PhotoService implements PhotoRepository {
 	}
 
 	@Override
-	public void delete(Photo entity) {
+	public void delete(Image entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Iterable<? extends Photo> entities) {
+	public void delete(Iterable<? extends Image> entities) {
 		// TODO Auto-generated method stub
 
 	}
@@ -122,37 +122,37 @@ public class PhotoService implements PhotoRepository {
 	}
 
 	@Override
-	public <S extends Photo> List<S> findAll(Example<S> example) {
+	public <S extends Image> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> List<S> findAll(Example<S> example, Sort sort) {
+	public <S extends Image> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> S findOne(Example<S> example) {
+	public <S extends Image> S findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends Image> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Photo> long count(Example<S> example) {
+	public <S extends Image> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends Photo> boolean exists(Example<S> example) {
+	public <S extends Image> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
